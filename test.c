@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2024/11/23 13:33:46 by sslaoui          ###   ########.fr       */
+/*   Updated: 2024/11/25 10:11:18 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,17 @@ int	rgb_parse(char *str, t_map *utils)
 	return (0);
 }
 
-// int		parse_line(char *str)
-// {
-// 	int	i;
+int	space_skip(char *str)
+{
+	int	i;
 
-// 	i = 0;
-// 	while(str[i])
-// 	{
-// 		if (str[i] != '0')
-// 	}
-// }
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '\n' || !str[i])
+		return (1);
+	return (0);
+}
 
 int	parse1(char *str, int *i, t_map *utils, int *in)
 {
@@ -105,8 +106,24 @@ int	parse1(char *str, int *i, t_map *utils, int *in)
 	return (0);
 }
 
+int	checker(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != '0' && str[i] != '1' 
+			&& str[i] != 'N' && str[i] != ' ' && str[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	parse(char *str, int *i, t_map *utils, int *in)
 {
+	(void)in;
 	if (ft_strncmp(str, "NO ", 3) == 0)
 	{
 		utils->NO = str;
@@ -133,19 +150,15 @@ int	parse(char *str, int *i, t_map *utils, int *in)
 		if (rgb_parse(str, utils) == 1)
 			return (1);
 	}
-	else if (parse1(str, i, utils, in) == 1)
+	else if ((*str == '0' || *str == '1') && (!utils->NO || !utils->EA || !utils->WE || !utils->SO))
 		return (1);
-	return (0);
-}
-
-int	space_skip(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] == ' ')
-		i++;
-	if (str[i] == '\n' || !str[i])
+	else if ((*str == '0' || *str == '1') && (utils->C_rgb == -1 || utils->F_rgb == -1))
+		return (1);
+	else if (space_skip(str) == 1 || ft_strcmp(str, "\n") == 0)
+		return (0);
+	else if (checker(str) == 1)
+		return (0);
+	else
 		return (1);
 	return (0);
 }
@@ -170,19 +183,11 @@ int	get_content(t_list **lst, int *fd, t_map *utils)
 	ptr = str;
 	while (str)
 	{
-		while (ptr && *ptr == ' ')
-			ptr++;
 		if (*ptr == '\t')
 			return (1);
 		if (parse(str, &j, utils, &in) == 1)
 			return (1);
-		// if (ft_strcmp(str, "\n") == 0 || space_skip(str) == 1)
-		// {
-		// 	str = get_next_line(*fd);
-		// 	ptr = str;
-		// 	continue;
-		// }
-		if (*ptr == '1' || *ptr == '0' || ft_strcmp(str, "\n") == 0)
+		if (*ptr == '1' || *ptr == '0' || ft_strcmp(str, "\n") == 0 || space_skip(ptr) == 1)
 		{
 			node = ft_lstnew(str);
 			ft_lstadd_back(lst, node);
@@ -257,8 +262,10 @@ int	check_map2(char **map, int i, int j, int y)
 	k = 0;
 	if (i == y)
 		return (0);
+	printf("%s --- %d\n", map[i - 1], j);
+	// write(1, &map[i - 1][0], 1);
 	if (map[i - 1][j] != '1' && map[i - 1][j] != 'N' && map[i - 1][j] != '0')
-		return (1);
+		return (write(1, &map[i - 1][j - 10], 1), 1);
 	if (j > 0 && map[i][j - 1] != '1' && map[i][j - 1] != 'N' && map[i][j - 1] != '0')
 		return (1);
 	if (map[i + 1][j] != '1' && map[i + 1][j] != 'N' && map[i + 1][j] != '0')
@@ -283,15 +290,19 @@ int	check_map(char **map, int y)
 	{
 		while (map[i][j])
 		{
-			if (map[i][0] != '1')
+			if (map[i][0] != '1' && map[i][0] != '\n')
 				return (1);
 			if (map[i][j] == 'N')
 				count++;
 			if (count > 1)
 				return (1);
 			if (map[i][j] == '0')
+			{	
 				if (check_map2(map, i, j, y) == 1)
 					return (1);
+			}
+			else if(map[i][j] != '1' && map[i][j] != '\n' && map[i][j] != 'N' && map[i][j] != ' ')
+				return (1);
 			j++;
 		}
 		j = 0;
@@ -305,6 +316,11 @@ int	filling_map(t_map *utils, int len, int j, t_list *lst)
 	int	i;
 
 	i = 0;
+	while (lst && (ft_strcmp(lst->content, "\n") == 0 || space_skip(lst->content) == 1))
+	{
+		lst = lst->next;
+		j--;
+	}
 	utils->map = malloc(sizeof(char *) * (j + 1));
 	while (lst)
 	{
@@ -314,7 +330,8 @@ int	filling_map(t_map *utils, int len, int j, t_list *lst)
 		i++;
 	}
 	utils->map[i] = NULL;
-	if (check_map(utils->map, j) == 1)
+	i = 0;
+	if (!utils->map[i] || check_map(utils->map, j) == 1)
 		return (1);
 	return (0);
 }
@@ -326,7 +343,6 @@ void	*parsing_map(t_map *utils, int *fd)
 	int		len;
 	int		i;
 	int		j;
-	// char *s;
 
 	i = 0;
 	lst = NULL;
@@ -336,11 +352,6 @@ void	*parsing_map(t_map *utils, int *fd)
 	len = lines_lenght(lst, &j);
 	if (filling_map(utils, len, j, lst) == 1)
 		return (write(2, "parse error\n", 13), NULL);
-	while (node)
-	{
-		printf("%s", node->content);
-		node = node->next;
-	}
 	return (NULL);
 }
 
@@ -356,47 +367,9 @@ void	utils_init(t_map *utils)
 
 int main()
 {
-	// void	*mlx;
 	t_map	utils;
-	// int		*t;
-	// void	*mlx_win;
-	// t_data	img;
-	// int x;
-	// int	i;
 	int	fd;
-	utils_init(&utils);
-	// int y;
 
-	// t = malloc(sizeof(int *) * 10);
+	utils_init(&utils);
 	parsing_map(&utils, &fd);
-	// i = 0;
-	// mlx = mlx_init();
-	// mlx_win = mlx_new_window(mlx, 1920, 1080, "Window");
-	// img.img = mlx_new_image(mlx, 1920, 1080);
-	// img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_length, &img.endian);
-	// // while (i < 10)
-	// // {
-	// // 	j = 0;
-	// // 	while (j < 10)
-	// // 	{
-	// // 		if (t[i][j] == 1)
-	// // 			put
-	// // 	}
-	// // }
-	// // raycasting(mlx, mlx_win)
-	// x = 500;
-	// y = 500;
-	// // while (x < 1000)
-	// // {
-	// // 	put_pixel(&img, x, y, 0x00FF0000);
-	// // 	while (y < 1000)
-	// // 	{
-	// // 		put_pixel(&img, x, y, 0x00FF0000);
-	// // 		y++;
-	// // 	}
-	// // 	x++;
-	// // 	y = 500;
-	// // }
-	// mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	// mlx_loop(mlx);
 }

@@ -1,22 +1,30 @@
-EA textures/simonkraft/respawn_anchor_side2.xpm
-SO textures/simonkraft/respawn_anchor_side4.xpm
-WE textures/simonkraft/respawn_anchor_side3.xpm
-NO textures/simonkraft/respawn_anchor_side0.xpm
-
-
-
-C 84,0,4
-
-
-
+C 2,40,4
 F 10,6,0
 
-1111111111111111
-1111111111100011111
+EA textures/simonkraft/respawn_anchor_side2.xpm
+
+
+
+SO textures/simonkraft/respawn_anchor_side4.xpm
+
+
+
+WE textures/simonkraft/respawn_anchor_side3.xpm
+
+
+
+
+NO textures/simonkraft/respawn_anchor_side0.xpm 
+
+
+
+
+ 
+111111111111111
 1111111111100011111
 111111111111111111111
 111111111111111
-111000N00000111
+11100N0000111
 110000000000011
 100001111100001
 110000111000011
