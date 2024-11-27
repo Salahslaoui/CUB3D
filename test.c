@@ -6,11 +6,12 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2024/11/25 10:11:18 by sslaoui          ###   ########.fr       */
+/*   Updated: 2024/11/27 15:17:01 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "pluh.h"
 #include <libc.h>
 
 typedef struct s_data
@@ -183,6 +184,8 @@ int	get_content(t_list **lst, int *fd, t_map *utils)
 	ptr = str;
 	while (str)
 	{
+		while (*ptr == ' ')
+			ptr++;
 		if (*ptr == '\t')
 			return (1);
 		if (parse(str, &j, utils, &in) == 1)
@@ -235,8 +238,12 @@ void	ft_strcpy(const char *src, char *dst)
 int	sides_map(char **map, int y)
 {
 	int	i;
+	int	j;
+	int	len;
 
 	i = 0;
+	j = 0;
+	len = 0;
 	while (map  && map[0] && map[0][i])
 	{
 		if (map[0][i] == '1' || map[0][i] == '\n')
@@ -252,6 +259,19 @@ int	sides_map(char **map, int y)
 		else
 			return (1);
 	}
+	i = 0;
+	while (map[i])
+	{
+		while (map[i][j] == ' ')
+			j++;
+		while (map[i][len])
+			len++;
+		if ((map[i][j] != '1' && map[i][j] != '\n') || (map[i][len - 1] != '1' && map[i][len - 1] != '\n'))
+			return (1);
+		i++;
+		len = 0;
+		j = 0;
+	}
 	return (0);
 }
 
@@ -262,10 +282,9 @@ int	check_map2(char **map, int i, int j, int y)
 	k = 0;
 	if (i == y)
 		return (0);
-	printf("%s --- %d\n", map[i - 1], j);
-	// write(1, &map[i - 1][0], 1);
+	// write(1, &map[1][25], 1);
 	if (map[i - 1][j] != '1' && map[i - 1][j] != 'N' && map[i - 1][j] != '0')
-		return (write(1, &map[i - 1][j - 10], 1), 1);
+		return (1);
 	if (j > 0 && map[i][j - 1] != '1' && map[i][j - 1] != 'N' && map[i][j - 1] != '0')
 		return (1);
 	if (map[i + 1][j] != '1' && map[i + 1][j] != 'N' && map[i + 1][j] != '0')
@@ -278,10 +297,12 @@ int	check_map2(char **map, int i, int j, int y)
 int	check_map(char **map, int y)
 {
 	int	count;
+	int	first;
 	int	i;
 	int	j;
 
 	count = 0;
+	first = 0;
 	i = 1;
 	j = 0;
 	if (sides_map(map, y) == 1)
@@ -290,14 +311,17 @@ int	check_map(char **map, int y)
 	{
 		while (map[i][j])
 		{
-			if (map[i][0] != '1' && map[i][0] != '\n')
-				return (1);
+			while (map[i][j] == ' ')
+				j++;
+			first = j;
+			// if (map[i][first] != '1' && map[i][first] != '\n')
+			// 	return (write(1, &map[i][j], 1), 1);
 			if (map[i][j] == 'N')
 				count++;
 			if (count > 1)
 				return (1);
 			if (map[i][j] == '0')
-			{	
+			{
 				if (check_map2(map, i, j, y) == 1)
 					return (1);
 			}
@@ -309,6 +333,19 @@ int	check_map(char **map, int y)
 		i++;
 	}
 	return (0);
+}
+
+void	fill_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (i < 50)
+	{
+		str[i] = ' ';
+		i++;
+	}
+	str[i] = ' ';
 }
 
 int	filling_map(t_map *utils, int len, int j, t_list *lst)
@@ -325,6 +362,7 @@ int	filling_map(t_map *utils, int len, int j, t_list *lst)
 	while (lst)
 	{
 		utils->map[i] = malloc(len + 1);
+		// fill_space(utils->map[i]);
 		ft_strcpy(lst->content, utils->map[i]);
 		lst = lst->next;
 		i++;
@@ -333,6 +371,8 @@ int	filling_map(t_map *utils, int len, int j, t_list *lst)
 	i = 0;
 	if (!utils->map[i] || check_map(utils->map, j) == 1)
 		return (1);
+	utils->pl->height = j;
+	utils->pl->weight = len;
 	return (0);
 }
 
@@ -352,6 +392,12 @@ void	*parsing_map(t_map *utils, int *fd)
 	len = lines_lenght(lst, &j);
 	if (filling_map(utils, len, j, lst) == 1)
 		return (write(2, "parse error\n", 13), NULL);
+	i = 0;
+	while (utils->map[i])
+	{
+		printf("%s", utils->map[i]);
+		i++;
+	}
 	return (NULL);
 }
 
@@ -365,11 +411,99 @@ void	utils_init(t_map *utils)
 	utils->F_rgb = -1;
 }
 
+void	player_detection(char **map, t_player *pl)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map[i])
+	{
+		while (map[i][j])
+		{	
+			if (map[i][j] == 'N')
+			{
+				pl->pl_x = i;
+				pl->pl_y = j;
+				return ;
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
+// void	render_cub(t_data *img, int	*i, int	*j, int x, int y)
+// {
+// 	int	sav;
+
+// 	sav = x;
+// 	while (*i <= x * 32)
+// 	{
+// 		while (*j < x * 32)
+// 		{
+// 			put_pixel(img, *i, *j, 0x00FF0000);
+// 			(*j)++;
+// 		}
+// 		(*j) = 0;
+// 		(*i)++;
+		
+// 	}
+// 	*i
+// }
+
+// void	rendering_2d(t_data *img, t_map *utils)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	x;
+// 	int	y;
+
+// 	i = 0;
+// 	j = 0;
+// 	x = 0;
+// 	y = 0;
+// 	while (utils->map[i])
+// 	{
+// 		while (utils->map[i][j])
+// 		{
+// 			if (utils->map[i][j] == '1')
+// 				render_cub(img, &x, &y, i, j);
+// 		}
+// 	}
+// }
+
+void	pixels_rendering(t_map *utils)
+{
+	(void)utils;
+	void	*mlx_win;
+	t_data	img;
+	void	*mlx;
+	int	t_cub;
+
+	t_cub = 32;
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "CUB3D");
+	img.img = mlx_new_image(mlx, 1920, 1080);
+	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_length, &img.endian);
+	// rendering_2d(&img, utils);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_loop(mlx);
+}
+
 int main()
 {
 	t_map	utils;
+	t_player	pl;
 	int	fd;
 
+	plug_hello();
+	return(0);
+	utils.pl = &pl;
 	utils_init(&utils);
 	parsing_map(&utils, &fd);
+	player_detection(utils.map, &pl);
+	pixels_rendering(&utils);
 }

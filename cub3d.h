@@ -6,26 +6,37 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2024/11/21 11:53:38 by sslaoui          ###   ########.fr       */
+/*   Updated: 2024/11/27 14:41:20 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 #define CUB3D_H
 
+typedef struct s_player
+{
+	int	si_pl;
+	int	pl_x;
+	int	pl_y;
+	int	height;
+	int	weight;
+	int	hitbox;
+}	t_player;
+
 typedef struct s_map
 {
-	char	*NO;
-	char	*EA;
-	char	*SO;
-	char	*WE;
-	char	**map;
-	int	R;
-	int	G;
-	int	B;
-	int	a;
-	int F_rgb;
-	int C_rgb;
+	char		*NO;
+	char		*EA;
+	char		*SO;
+	char		*WE;
+	char		**map;
+	t_player	*pl;
+	int			R;
+	int			G;
+	int			B;
+	int			a;
+	int 		F_rgb;
+	int 		C_rgb;
 } t_map;
 
 typedef struct s_list
