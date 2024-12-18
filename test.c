@@ -6,30 +6,12 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2024/11/27 15:17:01 by sslaoui          ###   ########.fr       */
+/*   Updated: 2024/12/07 00:43:38 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "pluh.h"
 #include <libc.h>
-
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}	t_data;
-
-void	put_pixel(t_data *data, int x, int y, int color)
-{
-	char *dst;
-
-	dst = data->addr + (x * (data->bpp/8) + y * data->line_length);
-	*(unsigned int *)dst = color;
-}
 
 int	check_rgb(char **ptr)
 {
@@ -115,7 +97,8 @@ int	checker(char *str)
 	while (str[i])
 	{
 		if (str[i] != '0' && str[i] != '1' 
-			&& str[i] != 'N' && str[i] != ' ' && str[i] != '\n')
+			&& str[i] != 'N' && str[i] != 'S' && str[i] != 'W' && 
+			str[i] != 'E' && str[i] != ' ' && str[i] != '\n')
 			return (0);
 		i++;
 	}
@@ -283,13 +266,17 @@ int	check_map2(char **map, int i, int j, int y)
 	if (i == y)
 		return (0);
 	// write(1, &map[1][25], 1);
-	if (map[i - 1][j] != '1' && map[i - 1][j] != 'N' && map[i - 1][j] != '0')
+	if (map[i - 1][j] != '1' && map[i - 1][j] != 'N' && map[i - 1][j] != 'E' && map[i - 1][j] != 'W' && 
+		map[i - 1][j] != 'S' && map[i - 1][j] != '0')
 		return (1);
-	if (j > 0 && map[i][j - 1] != '1' && map[i][j - 1] != 'N' && map[i][j - 1] != '0')
+	if (j > 0 && map[i][j - 1] != '1' && map[i][j - 1] != 'N' && map[i][j - 1] != 'S' && 
+		map[i][j - 1] != 'W' && map[i][j - 1] != 'E' && map[i][j - 1] != '0')
 		return (1);
-	if (map[i + 1][j] != '1' && map[i + 1][j] != 'N' && map[i + 1][j] != '0')
+	if (map[i + 1][j] != '1' && map[i + 1][j] != 'N' && map[i + 1][j] != 'W' && map[i + 1][j] != 'E' && 
+		map[i + 1][j] != 'S' && map[i + 1][j] != '0')
 		return (1);
-	if (map[i][j + 1] != '1' && map[i][j + 1] != 'N' && map[i][j + 1] != '0')
+	if (map[i][j + 1] != '1' && map[i][j + 1] != 'N' && map[i][j + 1] != 'E' && map[i][j + 1] != 'W' && 
+		map[i][j + 1] != 'S' && map[i][j + 1] != '0')
 		return (1);
 	return (0);
 }
@@ -316,7 +303,7 @@ int	check_map(char **map, int y)
 			first = j;
 			// if (map[i][first] != '1' && map[i][first] != '\n')
 			// 	return (write(1, &map[i][j], 1), 1);
-			if (map[i][j] == 'N')
+			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S')
 				count++;
 			if (count > 1)
 				return (1);
@@ -325,7 +312,8 @@ int	check_map(char **map, int y)
 				if (check_map2(map, i, j, y) == 1)
 					return (1);
 			}
-			else if(map[i][j] != '1' && map[i][j] != '\n' && map[i][j] != 'N' && map[i][j] != ' ')
+			else if(map[i][j] != '1' && map[i][j] != '\n' && map[i][j] != 'N' && map[i][j] != 'S' && 
+				map[i][j] != 'W' && map[i][j] != 'E' && map[i][j] != ' ')
 				return (1);
 			j++;
 		}
@@ -422,7 +410,7 @@ void	player_detection(char **map, t_player *pl)
 	{
 		while (map[i][j])
 		{	
-			if (map[i][j] == 'N')
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W' || map[i][j] == 'E')
 			{
 				pl->pl_x = i;
 				pl->pl_y = j;
@@ -433,77 +421,4 @@ void	player_detection(char **map, t_player *pl)
 		j = 0;
 		i++;
 	}
-}
-
-// void	render_cub(t_data *img, int	*i, int	*j, int x, int y)
-// {
-// 	int	sav;
-
-// 	sav = x;
-// 	while (*i <= x * 32)
-// 	{
-// 		while (*j < x * 32)
-// 		{
-// 			put_pixel(img, *i, *j, 0x00FF0000);
-// 			(*j)++;
-// 		}
-// 		(*j) = 0;
-// 		(*i)++;
-		
-// 	}
-// 	*i
-// }
-
-// void	rendering_2d(t_data *img, t_map *utils)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	x;
-// 	int	y;
-
-// 	i = 0;
-// 	j = 0;
-// 	x = 0;
-// 	y = 0;
-// 	while (utils->map[i])
-// 	{
-// 		while (utils->map[i][j])
-// 		{
-// 			if (utils->map[i][j] == '1')
-// 				render_cub(img, &x, &y, i, j);
-// 		}
-// 	}
-// }
-
-void	pixels_rendering(t_map *utils)
-{
-	(void)utils;
-	void	*mlx_win;
-	t_data	img;
-	void	*mlx;
-	int	t_cub;
-
-	t_cub = 32;
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "CUB3D");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_length, &img.endian);
-	// rendering_2d(&img, utils);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
-}
-
-int main()
-{
-	t_map	utils;
-	t_player	pl;
-	int	fd;
-
-	plug_hello();
-	return(0);
-	utils.pl = &pl;
-	utils_init(&utils);
-	parsing_map(&utils, &fd);
-	player_detection(utils.map, &pl);
-	pixels_rendering(&utils);
 }
