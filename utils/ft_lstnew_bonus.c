@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 23:16:15 by sslaoui           #+#    #+#             */
-/*   Updated: 2024/11/19 01:48:13 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/18 01:45:02 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*ft_lstnew(void *content)
 	lst = malloc(sizeof(t_list));
 	if (!lst)
 		return (NULL);
-	lst->content = content;
+	lst->content = ft_strdup(content);
 	lst->next = NULL;
 	return (lst);
 }

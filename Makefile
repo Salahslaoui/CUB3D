@@ -1,35 +1,44 @@
-SRC = test.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c ft_strcmp.c \
-	  utils/ft_lstadd_back_bonus.c utils/ft_lstnew_bonus.c utils/ft_split.c utils/ft_atoi.c \
-	  utils/ft_strncmp.c main.c plug.c graph/ray.c \
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/29 09:15:18 by ozahdi            #+#    #+#              #
+#    Updated: 2025/01/18 22:33:54 by sslaoui          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRCP = 
+SRC			=	main.c\
+				get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
+				utils/ft_strcmp.c utils/ft_lstadd_back_bonus.c utils/ft_lstnew_bonus.c\
+				utils/ft_split.c utils/ft_atoi.c utils/ft_strncmp.c utils/ft_strshr.c\
+				ray_casting/hooks.c ray_casting/put_map.c ray_casting/ray_casting.c \
+				ray_casting/ray_casting_utils.c ray_casting/Castays.c ray_casting/3D_randring.c\
+				parsing/checker.c parsing/parsing.c parsing/rgb_check.c parsing/utils.c\
 
-OBJ = $(SRC:.c=.o)
+OBJ			=	$(SRC:.c=.o)
 
-OBJP = $(SRCP:.c=.o)
+CC			=	cc
 
-CC = cc
+FLAGS		=	-Wall -Wextra -Werror #-g3 -fsanitize=address
 
-FLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+NAME			=	cub3d
 
-NAME = cub3d
+MLX_FLAGS		=	-I./MLX42/include -L./MLX42/build -L/Users/$(USER)/.brew/opt/glfw/lib -lMLX42 -lglfw
 
-NAME2 = libplug.so
+all			:	$(NAME)
 
-all :  $(NAME2) $(NAME)
+$(NAME)		:	$(OBJ)
+			$(CC) $(FLAGS) $(OBJ) $(MLX_FLAGS) -o $(NAME)
 
+%o			:	%c cub3d.h
+			$(CC) $(FLAGS) -c $< -o $@
 
-$(NAME2): $(OBJP)
-	$(CC) $(FLAGS) -shared $(OBJP) -Lmlx -lmlx -framework OpenGL -framework AppKit -o libplug.so 
-$(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $@
+clean		:
+			rm -rf $(OBJ)
+fclean		:	clean
+			rm -rf $(NAME)
 
-%o: %c cub3d.h
-	$(CC) $(FLAGS) -Imlx -fPIC -c $< -o $@
-
-clean :
-	rm -rf $(OBJ) $(OBJP)
-fclean : clean
-	rm -rf $(NAME) $(NAME2)
-
-re : fclean all
+re			:	fclean all

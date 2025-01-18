@@ -1,52 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
+/*   Updated: 2025/01/18 22:34:10 by sslaoui          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
-#include <unistd.h>
-#include <stdlib.h> 
 
-// int main()
-// {
-// 	void	(*plug_ptr)(void);
-// 	void	*handle;
-// 	printf("this is the library :\n");
-// 	while(true){
-// 		system("gcc -c plug.c -fPIC -o plug.o && gcc -shared -o libplug.so plug.o");
-// 		handle = dlopen("libplug.so", RTLD_NOW);
-// 		// plug_hello();
-// 		plug_ptr = dlsym(handle, "plug_hello");
-// 		plug_ptr();
-// 		printf("\n%p ----- %p\n", handle, plug_ptr);
-// 		dlclose(handle);
-// 		sleep(1);
-// 	}
-	
-// 	return (0);
-// }
-int main()
+void	l()
 {
-	t_map	utils;
-	t_player	pl;
-	int	fd;
-	// 	void	(*plug_ptr)(t_map *utils);
-	// void	*handle;
-	utils.pl = &pl;
-	utils_init(&utils);
-	parsing_map(&utils, &fd);
-	plug_hello(&utils);
-	// printf("this is the library :\n");
-	// while(true){
-		// system("make");
-		// handle = dlopen("libplug.so", RTLD_NOW);
-		// plug_hello();
-		// plug_ptr = dlsym(handle, "plug_hello");
-		// plug_ptr(&utils);
-		// printf("\n%p ----- %p\n", handle, plug_ptr);
-		// dlclose(handle);
-		// sleep(1);
-	// }
+	system("leaks cub3d");
+}
 
-	// return(0);
-	// if(utils.map)
-	// {
-	// 	player_detection(utils.map, &pl);
-	// 	// plug_hello(&utils);
-	// }
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+int main(int ac, char **av)
+{
+	// atexit(l);
+	t_data	utils;
+	t_player	pl;
+	t_graph	mlx;
+	int	fd;
+
+	if (ac != 2)
+		return printf("bad arg!"), 1;
+	utils.player = &pl;
+	utils.mlx = &mlx;
+	utils_init(&utils, av[1]);
+	parsing_map(&utils, &fd);
+	player_detection(utils.map, &pl);
+	// free_map(utils.map);
+	ray_casting(&utils, &mlx);
 }
