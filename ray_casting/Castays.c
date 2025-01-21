@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Castays.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:31:59 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/01/12 23:27:26 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/01/20 01:52:15 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,6 @@ void CastAllRays(t_data *data, t_player *player)
 	//int		i;
 
 	plus = degree_radian(FOV_ANG, 0) / RAY_NBR;
-	data->view = malloc(sizeof(t_rays) * RAY_NBR);
 	ang = player->rot_angel - (degree_radian(FOV_ANG, 0) / 2);
 	while (ColumId < RAY_NBR)
 	{

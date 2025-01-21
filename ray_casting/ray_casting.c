@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:26:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/01/18 22:35:23 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/20 02:00:13 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,6 @@ void rander_2d_map(t_data *data, t_graph *mlx)
 {
 	mlx->mlx = mlx_init(WEIGHT, HEIGHT, "CUB3D", false);
 	mlx->project = mlx_new_image(mlx->mlx, WEIGHT, HEIGHT);
-	//mlx->image = mlx_new_image(mlx->mlx, (data->weight - 1) * SQUER, data->height * SQUER);
-	// if (data->view[i].wasHitVert == true)
-	// {
-	// 	// if (data->view[i].ray_ang > 0 && data->view[i].ray_ang < M_PI)
-	// 		mlx->la = mlx_load_png("/Users/ozahdi/Desktop/cub2d/wall1.png");
-	// 	// else
-	// 	// 	mlx->la = mlx_load_png("/Users/ozahdi/Desktop/cub2d/wall2.png");
-	// }
-	// else
-	// {
-	// 	// if (data->view[i].ray_ang > M_PI / 2 && data->view[i].ray_ang < 3 * M_PI_2)
-	// 	// 	mlx->la = mlx_load_png("/Users/ozahdi/Desktop/cub2d/sss.png");
-	// 	// else
-	// 		mlx->la = mlx_load_png("/Users/ozahdi/Desktop/cub2d/pic2.png");	
-	// }
 	mlx->N = mlx_load_png("/Users/sslaoui/Desktop/Cub3d/wall2.png");
 	mlx->W = mlx_load_png("/Users/sslaoui/Desktop/Cub3d/wall1.png");
 	mlx->E = mlx_load_png("/Users/sslaoui/Desktop/Cub3d/sss.png");
@@ -68,9 +53,6 @@ void rander_2d_map(t_data *data, t_graph *mlx)
 	// printf("----------------------------------\n");
 	// mlx->textute = mlx_texture_to_image(mlx->mlx, mlx->la);
 	mlx_image_to_window(data->mlx->mlx, data->mlx->project, 0, 0);
-	//mlx_image_to_window(data->mlx->mlx, data->mlx->image, 0, 0);
-	//ft_fill_project(data, data->mlx);
-	//ft_put_map(data);
 	CastAllRays(data, data->player);
 	Randring3D(data, data->player);
 	mlx_loop_hook(data->mlx->mlx,ft_handek_actions, data);
@@ -80,5 +62,6 @@ void rander_2d_map(t_data *data, t_graph *mlx)
 void ray_casting(t_data *data, t_graph *mlx)
 {
 	ft_init_data(data);
+	data->view = malloc(sizeof(t_rays) * RAY_NBR);
 	rander_2d_map(data, mlx);
 }

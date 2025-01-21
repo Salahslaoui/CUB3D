@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/18 00:43:56 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/21 09:00:20 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,20 @@ typedef struct s_player
 	int			si_pl;
 }	t_player;
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+} t_list;
+
 typedef struct s_data
 {
-	bool			update;
-	char			*name;
 	t_graph		*mlx;
+	t_list		*lst;
 	t_rays		*view;
 	t_texture		texture;
+	bool			update;
+	char			*name;
 	char			*NO;
 	char			*EA;
 	char			*SO;
@@ -108,20 +115,17 @@ typedef struct s_data
 	char			**map;
 	t_player		*player;
 	int			R;
+	int			count;
+	int			first;
 	int			G;
 	int			B;
 	int			a;
+	int			i;
 	int 			F_rgb;
 	int 			C_rgb;
 	int			height;
 	int			weight;
 } t_data;
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-} t_list;
 
 						// UTILS
 int		ft_atoi(const char *str);
@@ -137,20 +141,27 @@ void	ft_strcpy(const char *src, char *dst);
 void	player_detection(char **map, t_player *pl);
 void	utils_init(t_data *utils, char *av);
 void	fill_space(char *str);
+char	*ft_strtrim(char *s1, char *set);
+void	init_dt(char **ptr, char *str, int *i, int *j);
 // void	free_it(t_list *lst);
 
 						//PARSE
 void	*parsing_map(t_data *utils, int *fd);
 int		filling_map(t_data *utils, int len, int j, t_list *lst);
-int		check_map(char **map, int y);
+int		check_map(t_data *map, int y);
 int		check_map2(char **map, int i, int j, int y);
 int		sides_map(char **map, int y);
 int		check_rgb(char **ptr);
 int		rgb_parse(char *str, t_data *utils);
-int		get_content(t_list **lst, int *fd, t_data *utils);
-int		parse(char *str, int *i, t_data *utils, int *in);
+int		get_content(int *fd, t_data *utils);
+int		parse(char *str, int *i, t_data *utils, int in);
 int		checker(char *str);
-int		parse1(char *str, int *i, t_data *utils, int *in);
+int		parse1(char *str, t_data *utils);
+int	top_buttom(char **map, int y, int i);
+int	map_check(t_data *utils, int y, int i, int *j);
+int	dir_fill(char *str, t_data *utils, int *i);
+int	direction_fill(char *str, t_data *utils, int *i);
+int	line_check(char *str, t_data *utils, int in, int fd);
 
 
 void ray_casting(t_data *data, t_graph *mlx);

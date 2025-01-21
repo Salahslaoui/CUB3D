@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/18 22:34:10 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/21 03:16:22 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	free_map(char **map)
 
 int main(int ac, char **av)
 {
-	// atexit(l);
+	atexit(l);
 	t_data	utils;
 	t_player	pl;
 	t_graph	mlx;
@@ -44,7 +44,10 @@ int main(int ac, char **av)
 	utils.mlx = &mlx;
 	utils_init(&utils, av[1]);
 	parsing_map(&utils, &fd);
+	if (!utils.map)
+		return (0);
 	player_detection(utils.map, &pl);
-	// free_map(utils.map);
-	ray_casting(&utils, &mlx);
+	// ray_casting(&utils, &mlx);
+	// if ()
+	free_map(utils.map);
 }

@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:24:29 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/01/17 23:40:52 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/20 21:56:25 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,8 @@ void	Randring3D(t_data *data, t_player *player)
 	uint32_t	*walltexture;
 	mlx_image_t	*los = NULL;
 
-	walltexture = malloc(sizeof(uint32_t) * TEXT_HEIGH * TEXT_WIDTH);
+	walltexture = NULL;
+	// walltexture = malloc(sizeof(uint32_t) * TEXT_HEIGH * TEXT_WIDTH);
 	ft_fill_project(data, data->mlx);
 	i = -1;
 	while (++i < RAY_NBR)
