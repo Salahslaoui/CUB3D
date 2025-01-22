@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/21 03:16:22 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/22 06:09:36 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ int main(int ac, char **av)
 	if (!utils.map)
 		return (0);
 	player_detection(utils.map, &pl);
-	// ray_casting(&utils, &mlx);
-	// if ()
+	if ((int)pl.pl_x == 0 || (int)pl.pl_y == 0)
+    {
+		write(2, "Cub3d: Error: You should to add player!\n", 41);
+		return (free_map(utils.map), 1);
+    }
+	ray_casting(&utils, &mlx);
 	free_map(utils.map);
 }

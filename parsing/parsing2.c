@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 08:45:34 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/21 08:46:26 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/22 05:55:10 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	line_check(char *str, t_data *utils, int in, int fd)
 			ptr++;
 		if (*ptr == '\t' || parse(str, &j, utils, in) == 1)
 			return (free(str), 1);
-		if (*ptr == '1' || *ptr == '0' || ft_strcmp(str, "\n") == 0 || space_skip(ptr) == 1)
+		if (*ptr == '1' || *ptr == '0' || ft_strcmp(str, "\n") == 0
+			|| space_skip(ptr) == 1)
 		{
 			node = ft_lstnew(str);
 			ft_lstadd_back(&utils->lst, node);

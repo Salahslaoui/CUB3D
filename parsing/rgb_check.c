@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:02:47 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/18 00:52:16 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/22 06:01:49 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,23 @@ void	free_splt(char **str)
 	free(str);
 }
 
+int	var_init(t_data *utils, char **ptr)
+{
+	if (check_rgb(ptr) == 1)
+		return (1);
+	utils->R = ft_atoi(ptr[0]);
+	utils->G = ft_atoi(ptr[1]);
+	utils->B = ft_atoi(ptr[2]);
+	if (utils->R > 255 || utils->G > 255 || utils->B > 255)
+		return (1);
+	return (0);
+}
+
 int	rgb_parse(char *str, t_data *utils)
 {
 	char	**ptr;
+	char	*save;
 	int		a;
-	char *save;
 
 	save = str;
 	a = 255;
@@ -69,16 +81,13 @@ int	rgb_parse(char *str, t_data *utils)
 	ptr = ft_split(str, ',');
 	if (!ptr || !ptr[0] || !ptr[1] || !ptr[2] || ptr[3])
 		return (free_splt(ptr), 1);
-	if (check_rgb(ptr) == 1)
-		return (free_splt(ptr), 1);
-	utils->R = ft_atoi(ptr[0]);
-	utils->G = ft_atoi(ptr[1]);
-	utils->B = ft_atoi(ptr[2]);
-	if (utils->R > 255 || utils->G > 255 || utils->B > 255)
+	if (var_init(utils, ptr) == 1)
 		return (free_splt(ptr), 1);
 	if (*(str - 2) == 'C')
-		utils->C_rgb = (utils->R << 24) | (utils->G << 16) | (utils->B << 8) | (a);
+		utils->C_rgb = (utils->R << 24) | (utils->G << 16)
+			| (utils->B << 8) | (a);
 	if (*(str - 2) == 'F')
-		utils->F_rgb = (utils->R << 24) | (utils->G << 16) | (utils->B << 8) | (a);
+		utils->F_rgb = (utils->R << 24) | (utils->G << 16)
+			| (utils->B << 8) | (a);
 	return (free_splt(ptr), 0);
 }

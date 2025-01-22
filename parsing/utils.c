@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:00:56 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/21 09:00:36 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/22 06:05:09 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ void	player_detection(char **map, t_player *pl)
 	while (map[i])
 	{
 		while (map[i][j])
-		{	
-			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W' || map[i][j] == 'E')
+		{
+			if (map[i][j] == 'N' || map[i][j] == 'S'
+				|| map[i][j] == 'W' || map[i][j] == 'E')
 			{
 				pl->pl_x = j;
 				pl->pl_y = i;
@@ -64,11 +65,6 @@ void	player_detection(char **map, t_player *pl)
 		j = 0;
 		i++;
 	}
-	if ((int)pl->pl_x == 0 || (int)pl->pl_y == 0)
-    {
-        write(2, "Cub3d: Error: You should to add player!\n", 41);
-        exit(1);
-    }
 }
 
 void	ft_strcpy(const char *src, char *dst)

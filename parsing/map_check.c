@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 08:47:08 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/21 19:47:09 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/22 05:53:20 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,19 @@ int	check_map2(char **map, int i, int j, int y)
 	if (i == y)
 		return (0);
 	if (map[i - 1][j] != '1' && map[i - 1][j] != 'N' && \
-	map[i - 1][j] != 'E' && map[i - 1][j] != 'W' && 
+	map[i - 1][j] != 'E' && map[i - 1][j] != 'W' && \
 		map[i - 1][j] != 'S' && map[i - 1][j] != '0')
 		return (1);
 	if (j > 0 && map[i][j - 1] != '1' && map[i][j - 1] != 'N' && \
-		map[i][j - 1] != 'S' && 
+		map[i][j - 1] != 'S' && \
 		map[i][j - 1] != 'W' && map[i][j - 1] != 'E' && map[i][j - 1] != '0')
 		return (1);
 	if (map[i + 1][j] != '1' && map[i + 1][j] != 'N' && \
-		map[i + 1][j] != 'W' && map[i + 1][j] != 'E' && 
+		map[i + 1][j] != 'W' && map[i + 1][j] != 'E' && \
 		map[i + 1][j] != 'S' && map[i + 1][j] != '0')
 		return (1);
 	if (map[i][j + 1] != '1' && map[i][j + 1] != 'N' && \
-		map[i][j + 1] != 'E' && map[i][j + 1] != 'W' && 
+		map[i][j + 1] != 'E' && map[i][j + 1] != 'W' && \
 		map[i][j + 1] != 'S' && map[i][j + 1] != '0')
 		return (1);
 	return (0);
@@ -79,7 +79,7 @@ int	check_map2(char **map, int i, int j, int y)
 
 int	map_check(t_data *utils, int y, int i, int *j)
 {
-	char m;
+	char	m;
 
 	while (utils->map[i][*j] == ' ')
 		(*j)++;
@@ -94,7 +94,7 @@ int	map_check(t_data *utils, int y, int i, int *j)
 		if (check_map2(utils->map, i, *j, y) == 1)
 			return (1);
 	}
-	else if(m != '1' && m != '\n' && m != 'N' && m != 'S' && 
+	else if (m != '1' && m != '\n' && m != 'N' && m != 'S' && \
 		m != 'W' && m != 'E' && m != ' ')
 		return (1);
 	(*j)++;

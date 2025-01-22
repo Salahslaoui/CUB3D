@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:56:57 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/21 08:48:04 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/22 05:54:45 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	top_buttom(char **map, int y, int i)
 	i = 0;
 	while (y > 0 && map[y - 1][i])
 	{
-		if (map[y - 1][i] == '1' || map[y - 1][i] == '\n' || map[y - 1][i] == ' ')
+		if (map[y - 1][i] == '1' || map[y - 1][i] == '\n'
+			|| map[y - 1][i] == ' ')
 			i++;
 		else
 			return (1);
@@ -37,7 +38,8 @@ int	filling_map(t_data *utils, int len, int j, t_list *lst)
 	int	i;
 
 	i = 0;
-	while (lst && (ft_strcmp(lst->content, "\n") == 0 || space_skip(lst->content) == 1))
+	while (lst && (ft_strcmp(lst->content, "\n") == 0
+			|| space_skip(lst->content) == 1))
 	{
 		lst = lst->next;
 		j--;
@@ -61,7 +63,6 @@ int	filling_map(t_data *utils, int len, int j, t_list *lst)
 
 void	free_it(t_list *lst, t_data *utils)
 {
-	(void)utils;
 	t_list	*fr;
 	t_list	*sav;
 
@@ -89,10 +90,12 @@ void	*parsing_map(t_data *utils, int *fd)
 	i = 0;
 	utils->lst = NULL;
 	if (get_content(fd, utils) == 1)
-		return (write(2, "parse error\n", 13), free_it(utils->lst, utils), NULL);
+		return (write(2, "parse error\n", 13),
+			free_it(utils->lst, utils), NULL);
 	len = lines_lenght(utils->lst, &j);
 	if (filling_map(utils, len, j, utils->lst) == 1)
-		return (write(2, "parse error\n", 13), free_it(utils->lst, utils), NULL);
+		return (write(2, "parse error\n", 13),
+			free_it(utils->lst, utils), NULL);
 	free_it(utils->lst, utils);
 	return (NULL);
 }
