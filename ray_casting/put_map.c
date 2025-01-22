@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:31:37 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/01/12 23:27:15 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/01/22 19:58:16 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ void ft_put_player(t_data *data, mlx_image_t *image)
 		}
 		i++;
 	}
-	data->player->d_x = data->player->pl_x + cos(data->player->rot_angel) * 10;
-	data->player->d_y = data->player->pl_y + sin(data->player->rot_angel) * 10;
-	bresenham(data->player->pl_y, data->player->pl_x, data->player->d_y, data->player->d_x, data);
 }
 
 void ft_put_map(t_data *data)

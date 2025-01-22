@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/22 06:08:06 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/22 19:54:25 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,23 @@ typedef struct s_rays
 	bool				wasHitVert;
 	float			ray_ang;
 	float			distance;
-	float				xstep;
-	float				ystep;
-	float				xintercept;
-	float				yintercept;
-	float				horz_wallhitx;
-	float				horz_wallhity;
-	float				vert_wallhitx;
-	float				vert_wallhity;
-	float				destinationX;
-	float				destinationY;
-	int 					wall_hight;
+	float			xstep;
+	float			ystep;
+	float			xintercept;
+	float			yintercept;
+	float			horz_wallhitx;
+	float			horz_wallhity;
+	float			vert_wallhitx;
+	float			vert_wallhity;
+	float			destinationX;
+	float			destinationY;
+	int 				wall_hight;
+	long				Up;
+	long				Down;
+	double		nextVTouchX;
+	double		nextVTouchY;
+	double		nextHTouchX;
+	double		nextHTouchY;
 	t_facing			*facing;
 }	t_rays;
 
@@ -166,7 +172,7 @@ int	line_check(char *str, t_data *utils, int in, int fd);
 
 void ray_casting(t_data *data, t_graph *mlx);
 int ft_check_wall(t_data *data, double x, double y);
-double degree_radian(double degree, int type);
+double deg_to_rad(double degree);
 double normalaize_angle(double angle);
 void ft_release_keys(t_data *data);
 void bresenham(int y0, int x0, int y1, int x1, t_data *exec);
