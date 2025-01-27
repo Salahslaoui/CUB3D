@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:26:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/01/22 19:58:58 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/01/27 21:37:31 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,42 +24,68 @@ static void	rotation_angel(t_data *data, t_player *player)
 		player->rot_angel = M_PI / 2;
 }
 
-void ft_init_data(t_data *data)
+void	ft_init_data(t_data *data)
 {
-	t_player *player;
+	t_player		*player;
 
 	player = data->player;
 	player->turn_dir = 0;
 	player->walk_dir = 0;
-	player->rot_angel = M_PI / 2;
 	rotation_angel(data, player);
 	player->redius = floor(SQUER / 7);
-	player->speed = 15;
+	player->speed = 4;
 	player->rot_speed = 2 * (M_PI / 180);
 	player->pl_x = player->pl_x * SQUER + floor(SQUER / 2);
 	player->pl_y = player->pl_y * SQUER + floor(SQUER / 2);
 	player->d_x = cos(deg_to_rad(player->rot_angel)) * player->speed;
 	player->d_y = sin(deg_to_rad(player->rot_angel)) * player->speed;
+	data->view = NULL;
 }
 
-void rander_2d_map(t_data *data, t_graph *mlx)
+void	init_mlx_ptrs(t_data *data)
 {
+	t_graph		*mlx;
+
+	mlx = data->mlx;
 	mlx->mlx = mlx_init(WEIGHT, HEIGHT, "CUB3D", false);
+	if (!mlx->mlx)
+		ft_exit(data, "Cub3D: Error: Window creation failed!\n", 1);
 	mlx->project = mlx_new_image(mlx->mlx, WEIGHT, HEIGHT);
-	mlx->N = mlx_load_png("wall2.png");
-	mlx->W = mlx_load_png("wall1.png");
-	mlx->E = mlx_load_png("sss.png");
-	mlx->S = mlx_load_png("pic.png");
-	mlx_image_to_window(data->mlx->mlx, data->mlx->project, 0, 0);
-	CastAllRays(data, data->player);
-	Randring3D(data, data->player);
-	mlx_loop_hook(data->mlx->mlx,ft_handek_actions, data);
+	if (!mlx->project)
+		ft_exit(data, "Cub3D: Error: Image creation failed!\n", 1);
+	if (mlx_image_to_window(data->mlx->mlx, data->mlx->project, 0, 0) == -1)
+		ft_exit(data, "Cub3D: Error: Puting image to window failed!\n", 1);
+	printf("[%s]\n", data->EA);
+	printf("[%s]\n", data->WE);
+	printf("[%s]\n", data->NO);
+	printf("[%s]\n", data->SO);
+	mlx->S = mlx_load_png(data->SO);
+	mlx->N = mlx_load_png(data->NO);
+	mlx->W = mlx_load_png(data->WE);
+	mlx->E = mlx_load_png(data->EA);
+
+	//	mlx->N = mlx_load_png("wall2.png");
+	//mlx->W = mlx_load_png("wall1.png");
+	//mlx->E = mlx_load_png("sss.png");
+	//mlx->S = mlx_load_png("pic.png");
+	if (!mlx->N | !mlx->W | !mlx->E | !mlx->S)
+		ft_exit(data, "Cub3D: Error: Loading images failed!", 1);
+}
+
+void	rander_2d_map(t_data *data, t_graph *mlx)
+{
+	init_mlx_ptrs(data);
+	cast_all_rays(data, data->player);
+	randring3d(data, data->player);
+	mlx_loop_hook(data->mlx->mlx, ft_handek_actions, data);
 	mlx_loop(mlx->mlx);
 }
 
-void ray_casting(t_data *data, t_graph *mlx)
+void	ray_casting(t_data *data, t_graph *mlx)
 {
 	ft_init_data(data);
 	data->view = malloc(sizeof(t_rays) * RAY_NBR);
+	if (!data->view)
+		ft_exit(data, "Cub3d: Error: Memory allocation failed!\n", 1);
 	rander_2d_map(data, mlx);
 }

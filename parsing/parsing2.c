@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 08:45:34 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/22 05:55:10 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/27 21:34:15 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	line_check(char *str, t_data *utils, int in, int fd)
 
 	ptr = NULL;
 	init_dt(&ptr, str, &i, &j);
+	
 	while (str)
 	{
 		while (*ptr == ' ')
@@ -47,6 +48,34 @@ int	line_check(char *str, t_data *utils, int in, int fd)
 	}
 	return (0);
 }
+//int	line_check(char *str, t_data *utils, int in, int fd)
+//{
+//	char	*ptr;
+//	t_list	*node;
+//	int		i;
+//	int		j;
+
+//	ptr = NULL;
+//	init_dt(&ptr, str, &i, &j);
+//	while (str)
+//	{
+//		while (*ptr == ' ')
+//			ptr++;
+//		if (*ptr == '\t' || parse(str, &j, utils, in) == 1)
+//			return (free(str), 1);
+//		if (*ptr == '1' || *ptr == '0' || ft_strcmp(str, "\n") == 0
+//			|| space_skip(ptr) == 1)
+//		{
+//			node = ft_lstnew(str);
+//			ft_lstadd_back(&utils->lst, node);
+//		}
+//		free(str);
+//		i++;
+//		str = get_next_line(fd);
+//		ptr = str;
+//	}
+//	return (0);
+//}
 
 int	dir_fill(char *str, t_data *utils, int *i)
 {
@@ -79,6 +108,7 @@ int	direction_fill(char *str, t_data *utils, int *i)
 		if (utils->NO)
 			return (1);
 		utils->NO = ft_strtrim(str + 3, "\n");
+		//printf("no [%s]\n", utils->NO);
 		(*i)++;
 		return (2);
 	}

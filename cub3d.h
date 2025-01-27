@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/22 19:54:25 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:24:46 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_rays
 {
 	bool				horz_wallhit;
 	bool				vert_wallhit;
-	bool				wasHitVert;
+	bool				washitvert;
 	float			ray_ang;
 	float			distance;
 	float			xstep;
@@ -64,10 +64,12 @@ typedef struct s_rays
 	int 				wall_hight;
 	long				Up;
 	long				Down;
-	double		nextVTouchX;
-	double		nextVTouchY;
-	double		nextHTouchX;
-	double		nextHTouchY;
+	double		nextvtouch_x;
+	double		nextvtouch_y;
+	double		nexthtouch_x;
+	double		nexthtouch_y;
+	int			offx;
+	int			offy;
 	t_facing			*facing;
 }	t_rays;
 
@@ -94,6 +96,7 @@ typedef struct s_player
 	int			turn_dir;
 	int			walk_dir;
 	float		rot_angel;
+	double strafe_dir;
 	int			speed;
 	double		rot_speed;
 	int			hitbox;
@@ -112,7 +115,7 @@ typedef struct s_data
 	t_list		*lst;
 	t_rays		*view;
 	t_texture		texture;
-	bool			update;
+	//bool			update;
 	char			*name;
 	char			*NO;
 	char			*EA;
@@ -179,8 +182,12 @@ void bresenham(int y0, int x0, int y1, int x1, t_data *exec);
 void ft_put_player(t_data *data, mlx_image_t *image);
 void ft_put_map(t_data *data);
 void ft_handek_actions(void *param);
-void CastAllRays(t_data *data, t_player *player);
+void cast_all_rays(t_data *data, t_player *player);
 int wallcheckers(t_data *data, int x, int y);
-void	Randring3D(t_data *data, t_player *player);
+void	randring3d(t_data *data, t_player *player);
+void	ft_exit(t_data *data, char *error, int exit_value);
+void	rayfacing(t_rays *ray, t_facing *facing);
+void	horizontal_intersection(t_data *data, t_rays *ray, t_facing *facing);
+void	vertical_intersection(t_data *data, t_rays *ray, t_facing *facing);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:24:29 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/01/22 19:57:50 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/01/27 17:03:19 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,43 @@
 
 unsigned int	rgb_convert(unsigned int cl)
 {
-	unsigned int R;
-	unsigned int G;
-	unsigned int B;
-	unsigned int A;
+	unsigned int		r;
+	unsigned int		g;
+	unsigned int		b;
+	unsigned int		a;
 
-	R = (cl >> 16) & 0xFF;
-	G = (cl >> 8) & 0xFF;
-	B = (cl) & 0xFF;
-	A = (cl >> 24) & 0xFF;
-	return ((B << 24) | (G << 16) | (R << 8) | (A));
+	r = (cl >> 16) & 0xFF;
+	g = (cl >> 8) & 0xFF;
+	b = (cl) & 0xFF;
+	a = (cl >> 24) & 0xFF;
+	return ((b << 24) | (g << 16) | (r << 8) | (a));
 }
 
-void PutLine(t_data *data, int x, double w_height)
+void	putline(t_data *data, int x, double w_height)
 {
 	long			i;
-	int			dist;
-	int			offx;
-	int			offy;
+	int				dist;
 	unsigned int	*tex_pxl;
 	unsigned int	text;
 
-	if (data->view[x].wasHitVert == true)
-		offx = (int)data->view[x].destinationY % TAIL;
+	if (data->view[x].washitvert == true)
+		data->view[x].offx = (int)data->view[x].destinationY % TAIL;
 	else
-		offx = (int)data->view[x].destinationX % TAIL;
+		data->view[x].offx = (int)data->view[x].destinationX % TAIL;
 	i = data->view[x].Up - 1;
 	while (++i < data->view[x].Down)
 	{
 		dist = i + (w_height / 2) - (HEIGHT / 2);
-		offy = dist * ((float)TEXT_WIDTH/ w_height);
+		data->view[x].offy = dist * ((float)TEXT_WIDTH / w_height);
 		tex_pxl = (unsigned int *)data->mlx->la->pixels;
-		text = rgb_convert(tex_pxl[(SQUER * offy) + offx]);
-			mlx_put_pixel(data->mlx->project, x, i, text);
+		text = rgb_convert(tex_pxl[(SQUER * data->view[x].offy) + \
+		data->view[x].offx]);
+		//if ((i / SQUER) < data->height && (x / SQUER) < data->weight && data->map[i / SQUER][x / SQUER])
+		mlx_put_pixel(data->mlx->project, x, i, text);
 	}
 }
 
-void ft_fill_project(t_data *data, t_graph *mlx)
+void	ft_fill_project(t_data *data, t_graph *mlx)
 {
 	int		i;
 	int		j;
@@ -59,21 +59,22 @@ void ft_fill_project(t_data *data, t_graph *mlx)
 	j = 0;
 	while (i < HEIGHT)
 	{
-		j = -1;
-		while (++j < WEIGHT)
+		j = 0;
+		while (j < WEIGHT)
 		{
 			if (i < HEIGHT / 2)
 				mlx_put_pixel(mlx->project, j, i, 0x2f3e46FF);
 			else
 				mlx_put_pixel(data->mlx->project, j, i, 0xcad2c5FF);
+			j++;
 		}
 		i++;
 	}
 }
 
-void ft_init_la_ptr(t_rays *ray, t_data *data)
+void	ft_init_la_ptr(t_rays *ray, t_data *data)
 {
-	if (ray->wasHitVert == true)
+	if (ray->washitvert == true)
 	{
 		if (ray->ray_ang > M_PI_2 && ray->ray_ang < 3 * M_PI_2)
 			data->mlx->la = data->mlx->N;
@@ -85,16 +86,17 @@ void ft_init_la_ptr(t_rays *ray, t_data *data)
 		if (ray->ray_ang > 0 && ray->ray_ang < M_PI)
 			data->mlx->la = data->mlx->E;
 		else
-			data->mlx->la = data->mlx->W;	
+			data->mlx->la = data->mlx->W;
 	}
 }
 
-void	Randring3D(t_data *data, t_player *player)
+void	randring3d(t_data *data, t_player *player)
 {
 	double		wallheight;
 	double		distanceprojection;
 	int			i;
 
+	(void)player;
 	ft_fill_project(data, data->mlx);
 	i = -1;
 	while (++i < RAY_NBR)
@@ -111,6 +113,6 @@ void	Randring3D(t_data *data, t_player *player)
 		if (data->view[i].Down > HEIGHT)
 			data->view[i].Down = HEIGHT;
 		ft_init_la_ptr(&data->view[i], data);
-		PutLine(data, i, wallheight);
+		putline(data, i, wallheight);
 	}
 }
