@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:56:57 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/30 12:50:24 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/30 13:12:23 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	free_it(t_list *lst, t_data *utils)
 
 void	*parsing_map(t_data *utils, int *fd)
 {
+	t_list	*fr;
+	t_list	*sav;
 	int		len;
 	int		i;
 	int		j;
@@ -96,7 +98,15 @@ void	*parsing_map(t_data *utils, int *fd)
 	if (filling_map(utils, len, j, utils->lst) == 1)
 		return (write(2, "parse error\n", 13),
 			free_it(utils->lst, utils), "error");
-	free_it(utils->lst, utils);
+	fr = utils->lst;
+	while (fr)
+	{
+		free(fr->content);
+		sav = fr;
+		fr = fr->next;
+		free(sav);
+	}
+	free(fr);
 	return ("NULL");
 }
 

@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 08:45:34 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/29 21:30:41 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/30 17:15:01 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,27 @@ void	init_dt(char **ptr, char *str, int *i, int *j)
 	*ptr = str;
 	*i = 0;
 	*j = 0;
+}
+
+char	*adjust_str(char *str, t_data *utils)
+{
+	char	*ptr;
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\t')
+			return (printf("Error\nthe map is invalid"),
+				free_it(utils->lst, utils), exit(1), NULL);
+		i++;
+	}
+	ptr = ft_strtrim(str + 3, "\n");
+	tmp = ptr;
+	ptr = ft_strtrim(ptr, " ");
+	free(tmp);
+	return (ptr);
 }
 
 int	line_check(char *str, t_data *utils, int in, int fd)
@@ -54,7 +75,7 @@ int	dir_fill(char *str, t_data *utils, int *i)
 	{
 		if (utils->WE)
 			return (1);
-		utils->WE = ft_strtrim(str + 3, "\n");
+		utils->WE = adjust_str(str, utils);
 		(*i)++;
 		return (2);
 	}
@@ -78,7 +99,7 @@ int	direction_fill(char *str, t_data *utils, int *i)
 	{
 		if (utils->NO)
 			return (1);
-		utils->NO = ft_strtrim(str + 3, "\n");
+		utils->NO = adjust_str(str, utils);
 		(*i)++;
 		return (2);
 	}
@@ -86,7 +107,7 @@ int	direction_fill(char *str, t_data *utils, int *i)
 	{
 		if (utils->SO)
 			return (1);
-		utils->SO = ft_strtrim(str + 3, "\n");
+		utils->SO = adjust_str(str, utils);
 		(*i)++;
 		return (2);
 	}
@@ -94,7 +115,7 @@ int	direction_fill(char *str, t_data *utils, int *i)
 	{
 		if (utils->EA)
 			return (1);
-		utils->EA = ft_strtrim(str + 3, "\n");
+		utils->EA = adjust_str(str, utils);
 		(*i)++;
 		return (2);
 	}

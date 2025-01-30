@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/29 21:47:45 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/30 17:14:00 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 void	l()
 {
 	system("leaks cub3d");
+}
+
+void	free_other(t_data *utils)
+{
+	free(utils->NO);
+	free(utils->EA);
+	free(utils->WE);
+	free(utils->SO);
 }
 
 void	free_map(char **map)
@@ -57,5 +65,6 @@ int main(int ac, char **av)
 		return (free_map(utils.map), 1);
     }
 	ray_casting(&utils, &mlx);
+	free_other(&utils);
 	free_map(utils.map);
 }
