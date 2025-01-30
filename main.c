@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/22 06:09:36 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/29 21:47:45 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ int main(int ac, char **av)
 	utils.player = &pl;
 	utils.mlx = &mlx;
 	utils_init(&utils, av[1]);
-	parsing_map(&utils, &fd);
+	if(ft_strncmp(parsing_map(&utils, &fd),"error",5) == 0)
+	{
+		printf("Error:\nThe map is Invalid\n");
+		exit (1);
+	}
 	if (!utils.map)
 		return (0);
 	player_detection(utils.map, &pl);

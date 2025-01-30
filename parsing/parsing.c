@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:56:57 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/22 05:54:45 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:50:24 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,23 @@ void	*parsing_map(t_data *utils, int *fd)
 	utils->lst = NULL;
 	if (get_content(fd, utils) == 1)
 		return (write(2, "parse error\n", 13),
-			free_it(utils->lst, utils), NULL);
+			free_it(utils->lst, utils), "error");
 	len = lines_lenght(utils->lst, &j);
 	if (filling_map(utils, len, j, utils->lst) == 1)
 		return (write(2, "parse error\n", 13),
-			free_it(utils->lst, utils), NULL);
+			free_it(utils->lst, utils), "error");
 	free_it(utils->lst, utils);
-	return (NULL);
+	return ("NULL");
+}
+
+int	calcul(int *j, char **ptr, int *i, int k)
+{
+	if (ptr[*i][*j - 1] == '\n')
+		(*j)--;
+	*j = *j - k;
+	if (*j > 3)
+		return (1);
+	*j = 0;
+	(*i)++;
+	return (0);
 }

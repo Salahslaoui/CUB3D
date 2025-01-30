@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/22 06:08:06 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:45:10 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ void	fill_space(char *str);
 char	*ft_strtrim(char *s1, char *set);
 void	init_dt(char **ptr, char *str, int *i, int *j);
 void	free_it(t_list *lst, t_data *utils);
+int		calcul(int *j, char **ptr, int *i, int k);
 
 						//PARSE
 void	*parsing_map(t_data *utils, int *fd);
