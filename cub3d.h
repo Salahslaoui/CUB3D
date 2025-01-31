@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/31 16:41:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/01/31 17:04:40 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ char	*ft_strtrim(char *s1, char *set);
 void	init_dt(char **ptr, char *str, int *i, int *j);
 void	free_it(t_list *lst, t_data *utils);
 void	free_map(char **map);
+int	calcul(int *j, char **ptr, int *i, int k);
 
 						//PARSE
 void	*parsing_map(t_data *utils, int *fd);

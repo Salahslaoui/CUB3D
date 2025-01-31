@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:56:57 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/27 21:39:34 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/01/30 13:12:23 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,34 +33,6 @@ int	top_buttom(char **map, int y, int i)
 	return (0);
 }
 
-//int	filling_map(t_data *utils, int len, int j, t_list *lst)
-//{
-//	int	i;
-
-//	i = 0;
-//	while (lst && (ft_strcmp(lst->content, "\n") == 0
-//			|| space_skip(lst->content) == 1))
-//	{
-//		lst = lst->next;
-//		j--;
-//	}
-//	utils->map = malloc(sizeof(char *) * (j + 1));
-//	while (lst)
-//	{
-//		utils->map[i] = malloc(len + 1);
-//		ft_strcpy(lst->content, utils->map[i]);
-//		lst = lst->next;
-//		i++;
-//	}
-//	utils->map[i] = NULL;
-//	i = 0;
-//	if (!utils->map[i] || check_map(utils, j) == 1)
-//		return (1);
-//	utils->height = j;
-//	utils->weight = len;
-//	return (0);
-//}
-
 int	filling_map(t_data *utils, int len, int j, t_list *lst)
 {
 	int	i;
@@ -73,13 +45,9 @@ int	filling_map(t_data *utils, int len, int j, t_list *lst)
 		j--;
 	}
 	utils->map = malloc(sizeof(char *) * (j + 1));
-	if (!utils->map)
-		ft_exit(utils, "Error:\nMemory allocation failed!\n", 1);
 	while (lst)
 	{
 		utils->map[i] = malloc(len + 1);
-		if (!utils->map[i])
-			ft_exit(utils, "Cub3d: Error: Memory allocation failed!\n", 1);
 		ft_strcpy(lst->content, utils->map[i]);
 		lst = lst->next;
 		i++;
@@ -88,7 +56,9 @@ int	filling_map(t_data *utils, int len, int j, t_list *lst)
 	i = 0;
 	if (!utils->map[i] || check_map(utils, j) == 1)
 		return (1);
-	return (utils->height = j, utils->weight = len, 0);
+	utils->height = j;
+	utils->weight = len;
+	return (0);
 }
 
 void	free_it(t_list *lst, t_data *utils)
@@ -113,6 +83,8 @@ void	free_it(t_list *lst, t_data *utils)
 
 void	*parsing_map(t_data *utils, int *fd)
 {
+	t_list	*fr;
+	t_list	*sav;
 	int		len;
 	int		i;
 	int		j;
@@ -120,12 +92,12 @@ void	*parsing_map(t_data *utils, int *fd)
 	i = 0;
 	utils->lst = NULL;
 	if (get_content(fd, utils) == 1)
-		return (free_it(utils->lst, utils), "error");
+		return (write(2, "parse error\n", 13),
+			free_it(utils->lst, utils), "error");
 	len = lines_lenght(utils->lst, &j);
 	if (filling_map(utils, len, j, utils->lst) == 1)
-		return (free_it(utils->lst, utils), "error");
-	t_list	*fr;
-	t_list	*sav;
+		return (write(2, "parse error\n", 13),
+			free_it(utils->lst, utils), "error");
 	fr = utils->lst;
 	while (fr)
 	{
@@ -135,5 +107,17 @@ void	*parsing_map(t_data *utils, int *fd)
 		free(sav);
 	}
 	free(fr);
-	return (NULL);
+	return ("NULL");
+}
+
+int	calcul(int *j, char **ptr, int *i, int k)
+{
+	if (ptr[*i][*j - 1] == '\n')
+		(*j)--;
+	*j = *j - k;
+	if (*j > 3)
+		return (1);
+	*j = 0;
+	(*i)++;
+	return (0);
 }
