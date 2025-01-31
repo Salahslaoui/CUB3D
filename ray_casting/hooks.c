@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:29:09 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/01/27 16:13:46 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/01/30 21:43:30 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_handek_actions(void *param)
 	if (mlx_is_key_down(data->mlx->mlx, MLX_KEY_A))
 		right_lift_moves(data, player, -1);
 	if (mlx_is_key_down(data->mlx->mlx, MLX_KEY_ESCAPE))
-		exit (0);
+		ft_exit(data, NULL, 0);
 	cast_all_rays(data, player);
 	randring3d(data, player);
 }

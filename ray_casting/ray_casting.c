@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:26:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/01/27 21:37:31 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/01/31 16:31:21 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ void	ft_init_data(t_data *data)
 	player->d_x = cos(deg_to_rad(player->rot_angel)) * player->speed;
 	player->d_y = sin(deg_to_rad(player->rot_angel)) * player->speed;
 	data->view = NULL;
+	data->mlx->mlx = NULL;
+	data->mlx->project = NULL;
+	data->mlx->E = NULL;
+	data->mlx->W = NULL;
+	data->mlx->N = NULL;
+	data->mlx->S = NULL;
 }
 
 void	init_mlx_ptrs(t_data *data)
@@ -55,19 +61,10 @@ void	init_mlx_ptrs(t_data *data)
 		ft_exit(data, "Cub3D: Error: Image creation failed!\n", 1);
 	if (mlx_image_to_window(data->mlx->mlx, data->mlx->project, 0, 0) == -1)
 		ft_exit(data, "Cub3D: Error: Puting image to window failed!\n", 1);
-	printf("[%s]\n", data->EA);
-	printf("[%s]\n", data->WE);
-	printf("[%s]\n", data->NO);
-	printf("[%s]\n", data->SO);
 	mlx->S = mlx_load_png(data->SO);
 	mlx->N = mlx_load_png(data->NO);
 	mlx->W = mlx_load_png(data->WE);
 	mlx->E = mlx_load_png(data->EA);
-
-	//	mlx->N = mlx_load_png("wall2.png");
-	//mlx->W = mlx_load_png("wall1.png");
-	//mlx->E = mlx_load_png("sss.png");
-	//mlx->S = mlx_load_png("pic.png");
 	if (!mlx->N | !mlx->W | !mlx->E | !mlx->S)
 		ft_exit(data, "Cub3D: Error: Loading images failed!", 1);
 }

@@ -6,16 +6,11 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/27 21:41:24 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/01/31 16:34:04 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	l()
-{
-	system("leaks cub3d");
-}
 
 void	free_map(char **map)
 {
@@ -33,7 +28,6 @@ void	free_map(char **map)
 
 int main(int ac, char **av)
 {
-	//atexit(l);
 	t_data	utils;
 	t_player	pl;
 	t_graph	mlx;
@@ -44,8 +38,7 @@ int main(int ac, char **av)
 	utils.player = &pl;
 	utils.mlx = &mlx;
 	utils_init(&utils, av[1]);
-	
-	//printf("%s\n",parsing_map(&utils, &fd));
+
 	if(ft_strncmp(parsing_map(&utils, &fd),"error",5) == 0)
 		ft_exit(&utils,"Error:\nThe map is Invalid\n",1);
 	if (!utils.map)
