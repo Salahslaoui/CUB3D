@@ -6,11 +6,16 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/31 16:34:04 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/01/31 17:09:51 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	l()
+{
+	system("leaks cub3d");
+}
 
 void	free_map(char **map)
 {
@@ -38,9 +43,7 @@ int main(int ac, char **av)
 	utils.player = &pl;
 	utils.mlx = &mlx;
 	utils_init(&utils, av[1]);
-
-	if(ft_strncmp(parsing_map(&utils, &fd),"error",5) == 0)
-		ft_exit(&utils,"Error:\nThe map is Invalid\n",1);
+	parsing_map(&utils, &fd);
 	if (!utils.map)
 		return (0);
 	player_detection(utils.map, &pl);
@@ -50,5 +53,6 @@ int main(int ac, char **av)
 		return (free_map(utils.map), 1);
     }
 	ray_casting(&utils, &mlx);
+	free_other(&utils);
 	free_map(utils.map);
 }
