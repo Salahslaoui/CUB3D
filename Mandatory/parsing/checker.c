@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:59:50 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/29 21:30:00 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/02/02 20:31:21 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,16 @@ int	get_content(int *fd, t_data *utils)
 	in = 0;
 	*fd = open(utils->name, O_RDONLY, 0777);
 	if (*fd == -1)
-		return (1);
+	{
+		ft_put_error("Error:\nOpening file failed!\n");
+		exit (1);
+	}
 	str = get_next_line(*fd);
+	if (!str)
+	{
+		ft_put_error("Error:\nReading from file failed!\n");
+		exit (1);
+	}
 	if (line_check(str, utils, in, *fd) == 1)
 		return (1);
 	return (0);

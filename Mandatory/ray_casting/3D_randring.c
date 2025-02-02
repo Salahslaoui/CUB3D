@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:24:29 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/01/27 17:03:19 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/02 21:19:18 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	putline(t_data *data, int x, double w_height)
 	unsigned int	text;
 
 	if (data->view[x].washitvert == true)
-		data->view[x].offx = (int)data->view[x].destinationY % TAIL;
+		data->view[x].offx = (int)data->view[x].destinationy % TAIL;
 	else
-		data->view[x].offx = (int)data->view[x].destinationX % TAIL;
+		data->view[x].offx = (int)data->view[x].destinationx % TAIL;
 	i = data->view[x].Up - 1;
 	while (++i < data->view[x].Down)
 	{
@@ -45,7 +45,6 @@ void	putline(t_data *data, int x, double w_height)
 		tex_pxl = (unsigned int *)data->mlx->la->pixels;
 		text = rgb_convert(tex_pxl[(SQUER * data->view[x].offy) + \
 		data->view[x].offx]);
-		//if ((i / SQUER) < data->height && (x / SQUER) < data->weight && data->map[i / SQUER][x / SQUER])
 		mlx_put_pixel(data->mlx->project, x, i, text);
 	}
 }
@@ -77,16 +76,16 @@ void	ft_init_la_ptr(t_rays *ray, t_data *data)
 	if (ray->washitvert == true)
 	{
 		if (ray->ray_ang > M_PI_2 && ray->ray_ang < 3 * M_PI_2)
-			data->mlx->la = data->mlx->N;
+			data->mlx->la = data->mlx->W;
 		else
-			data->mlx->la = data->mlx->S;
+			data->mlx->la = data->mlx->E;
 	}
 	else
 	{
 		if (ray->ray_ang > 0 && ray->ray_ang < M_PI)
-			data->mlx->la = data->mlx->E;
+			data->mlx->la = data->mlx->S;
 		else
-			data->mlx->la = data->mlx->W;
+			data->mlx->la = data->mlx->N;
 	}
 }
 

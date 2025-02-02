@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:56:57 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/30 13:12:23 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/02/02 20:31:21 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,21 @@ int	top_buttom(char **map, int y, int i)
 	return (0);
 }
 
+void ft_free_map_i(t_data *data, int end)
+{
+	int		i;
+
+	i = 0;
+	while (i < end)
+	{
+		free(data->map[i]);
+		data->map[i] = NULL;
+		i++;
+	}
+	free(data->map);
+	data->map = NULL;
+}
+
 int	filling_map(t_data *utils, int len, int j, t_list *lst)
 {
 	int	i;
@@ -45,9 +60,13 @@ int	filling_map(t_data *utils, int len, int j, t_list *lst)
 		j--;
 	}
 	utils->map = malloc(sizeof(char *) * (j + 1));
+	if (!utils->map)
+		return (ft_put_error("Error:\nMemory allocation failed!\n"), 1);
 	while (lst)
 	{
 		utils->map[i] = malloc(len + 1);
+		if (!utils->map[i])
+			return (ft_free_map_i(utils, i), 1);
 		ft_strcpy(lst->content, utils->map[i]);
 		lst = lst->next;
 		i++;
@@ -92,12 +111,10 @@ void	*parsing_map(t_data *utils, int *fd)
 	i = 0;
 	utils->lst = NULL;
 	if (get_content(fd, utils) == 1)
-		return (write(2, "parse error\n", 13),
-			free_it(utils->lst, utils), "error");
+		return (ft_put_error("Error:\nThe map is Invalid\n"), free_it(utils->lst, utils), "error");
 	len = lines_lenght(utils->lst, &j);
 	if (filling_map(utils, len, j, utils->lst) == 1)
-		return (write(2, "parse error\n", 13),
-			free_it(utils->lst, utils), "error");
+		return (ft_put_error("Error:\nThe map is Invalid\n"), free_it(utils->lst, utils), "error");
 	fr = utils->lst;
 	while (fr)
 	{
@@ -107,7 +124,7 @@ void	*parsing_map(t_data *utils, int *fd)
 		free(sav);
 	}
 	free(fr);
-	return ("NULL");
+	return (utils->lst = NULL, "NULL");
 }
 
 int	calcul(int *j, char **ptr, int *i, int k)

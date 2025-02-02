@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:00:56 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/01/22 06:05:09 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/02/02 20:31:21 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ void	fill_space(char *str)
 
 void	utils_init(t_data *utils, char *av)
 {
-	utils->EA = NULL;
-	utils->map = NULL;
-	utils->WE = NULL;
-	utils->NO = NULL;
-	utils->SO = NULL;
 	utils->C_rgb = -1;
 	utils->F_rgb = -1;
 	utils->name = av;

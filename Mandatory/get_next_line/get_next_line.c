@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../cub3d.h"
 
 char	*ft_get_line(char **static_var)
 {

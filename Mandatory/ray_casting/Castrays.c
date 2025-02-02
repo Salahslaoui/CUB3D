@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:31:59 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/01/27 16:55:54 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/02 21:19:18 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void	cast(t_data *data, int i, float Hdistance, float Vdistance)
 	if (data->view[i].vert_wallhit == true)
 		Vdistance = get_distence(data->player->pl_x, data->player->pl_y, \
 		data->view[i].vert_wallhitx, data->view[i].vert_wallhity);
-	data->view[i].destinationX = data->view[i].vert_wallhitx;
-	data->view[i].destinationY = data->view[i].vert_wallhity;
+	data->view[i].destinationx = data->view[i].vert_wallhitx;
+	data->view[i].destinationy = data->view[i].vert_wallhity;
 	data->view[i].distance = Vdistance;
 	if (Hdistance <= Vdistance)
 	{
-		data->view[i].destinationX = data->view[i].horz_wallhitx;
-		data->view[i].destinationY = data->view[i].horz_wallhity;
+		data->view[i].destinationx = data->view[i].horz_wallhitx;
+		data->view[i].destinationy = data->view[i].horz_wallhity;
 		data->view[i].distance = Hdistance;
 	}
 	if (Hdistance > Vdistance)
@@ -60,10 +60,8 @@ void	cast_all_rays(t_data *data, t_player *player)
 {
 	int		index;
 	float	ang;
-	//float	plus;
 
 	index = 0;
-	//plus = deg_to_rad(FOV_ANG) / RAY_NBR;
 	ang = player->rot_angel - (deg_to_rad(FOV_ANG) / 2);
 	while (index < RAY_NBR)
 	{

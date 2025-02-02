@@ -6,11 +6,25 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:20:03 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/01/31 16:32:52 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/02 21:07:40 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+	map = NULL;
+}
 
 void	ft_put_error(char *error)
 {
@@ -25,13 +39,20 @@ void	ft_put_error(char *error)
 
 void	ft_exit(t_data *data, char *error, int exit_value)
 {
-	//you should to free all allocated mumbers her;
+	ft_put_error(error);
 	if (data->map)
 		free_map(data->map);
 	if (data->view)
 		free(data->view);
 	if (data->mlx->mlx)
 		mlx_terminate(data->mlx->mlx);
-	ft_put_error(error);
+	if (data->NO)
+		free(data->NO);
+	if (data->SO)
+		free(data->SO);
+	if (data->WE)
+		free(data->WE);
+	if (data->EA)
+		free(data->EA);
 	exit (exit_value);
 }

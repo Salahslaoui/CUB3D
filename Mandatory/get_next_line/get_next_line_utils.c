@@ -6,11 +6,11 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 12:56:26 by sslaoui           #+#    #+#             */
-/*   Updated: 2024/11/25 11:17:32 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/02 21:15:07 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../cub3d.h"
 
 size_t	ft_strlen(const char *s)
 {
