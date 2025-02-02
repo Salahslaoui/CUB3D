@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:24:29 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/02 21:19:18 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/02 21:39:45 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	putline(t_data *data, int x, double w_height)
 		data->view[x].offx = (int)data->view[x].destinationy % TAIL;
 	else
 		data->view[x].offx = (int)data->view[x].destinationx % TAIL;
-	i = data->view[x].Up - 1;
-	while (++i < data->view[x].Down)
+	i = data->view[x].up - 1;
+	while (++i < data->view[x].down)
 	{
 		dist = i + (w_height / 2) - (HEIGHT / 2);
 		data->view[x].offy = dist * ((float)TEXT_WIDTH / w_height);
@@ -76,16 +76,16 @@ void	ft_init_la_ptr(t_rays *ray, t_data *data)
 	if (ray->washitvert == true)
 	{
 		if (ray->ray_ang > M_PI_2 && ray->ray_ang < 3 * M_PI_2)
-			data->mlx->la = data->mlx->W;
+			data->mlx->la = data->mlx->west;
 		else
-			data->mlx->la = data->mlx->E;
+			data->mlx->la = data->mlx->east;
 	}
 	else
 	{
 		if (ray->ray_ang > 0 && ray->ray_ang < M_PI)
-			data->mlx->la = data->mlx->S;
+			data->mlx->la = data->mlx->south;
 		else
-			data->mlx->la = data->mlx->N;
+			data->mlx->la = data->mlx->north;
 	}
 }
 
@@ -104,13 +104,13 @@ void	randring3d(t_data *data, t_player *player)
 		wallheight = (SQUER / (data->view[i].distance * \
 		cos(data->view[i].ray_ang - player->rot_angel))) * \
 		distanceprojection;
-		data->view[i].Up = (HEIGHT / 2) - (wallheight / 2);
-		if (data->view[i].Up < 0)
-			data->view[i].Up = 0;
-		data->view[i].Down = ((HEIGHT / 2) - \
+		data->view[i].up = (HEIGHT / 2) - (wallheight / 2);
+		if (data->view[i].up < 0)
+			data->view[i].up = 0;
+		data->view[i].down = ((HEIGHT / 2) - \
 		(wallheight / 2)) + wallheight;
-		if (data->view[i].Down > HEIGHT)
-			data->view[i].Down = HEIGHT;
+		if (data->view[i].down > HEIGHT)
+			data->view[i].down = HEIGHT;
 		ft_init_la_ptr(&data->view[i], data);
 		putline(data, i, wallheight);
 	}

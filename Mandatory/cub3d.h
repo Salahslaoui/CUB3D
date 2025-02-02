@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/02 21:31:48 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/02 21:46:14 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ typedef struct s_rays
 	bool			vert_wallhit;
 	bool			washitvert;
 	t_facing		*facing;
-	long			Up;
-	long			Down;
+	long			up;
+	long			down;
 }	t_rays;
 
 typedef struct s_graph
@@ -80,10 +80,10 @@ typedef struct s_graph
 	mlx_image_t		*project;
 	mlx_image_t		*image;
 	mlx_texture_t	*la;
-	mlx_texture_t	*N;
-	mlx_texture_t	*W;
-	mlx_texture_t	*S;
-	mlx_texture_t	*E;
+	mlx_texture_t	*north;
+	mlx_texture_t	*west;
+	mlx_texture_t	*south;
+	mlx_texture_t	*east;
 	mlx_image_t		*textute;
 }	t_graph;
 
@@ -117,21 +117,21 @@ typedef struct s_data
 	t_rays		*view;
 	t_texture	texture;
 	char		*name;
-	char		*NO;
-	char		*EA;
-	char		*SO;
-	char		*WE;
+	char		*no;
+	char		*ea;
+	char		*so;
+	char		*we;
 	char		**map;
 	t_player	*player;
-	int			R;
+	int			r;
 	int			count;
 	int			first;
-	int			G;
-	int			B;
+	int			g;
+	int			b;
 	int			a;
 	int			i;
-	int			F_rgb;
-	int			C_rgb;
+	int			f_rgb;
+	int			c_rgb;
 	int			height;
 	int			weight;
 }	t_data;

@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:26:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/01/31 16:31:21 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/02 21:49:14 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,26 @@ void	ft_init_data(t_data *data)
 	data->view = NULL;
 	data->mlx->mlx = NULL;
 	data->mlx->project = NULL;
-	data->mlx->E = NULL;
-	data->mlx->W = NULL;
-	data->mlx->N = NULL;
-	data->mlx->S = NULL;
+	data->mlx->east = NULL;
+	data->mlx->west = NULL;
+	data->mlx->north = NULL;
+	data->mlx->south = NULL;
+}
+
+void	ft_load_images(t_data *data, t_graph *mlx)
+{
+	mlx->south = mlx_load_png(data->so);
+	if (!mlx->south)
+		ft_exit(data, "Error:\nLoading images failed!\n", 1);
+	mlx->north = mlx_load_png(data->no);
+	if (!mlx->north)
+		ft_exit(data, "Error:\nLoading images failed!\n", 1);
+	mlx->west = mlx_load_png(data->we);
+	if (!mlx->west)
+		ft_exit(data, "Error:\nLoading images failed!\n", 1);
+	mlx->east = mlx_load_png(data->ea);
+	if (!mlx->east)
+		ft_exit(data, "Error:\nLoading images failed!\n", 1);
 }
 
 void	init_mlx_ptrs(t_data *data)
@@ -61,12 +77,7 @@ void	init_mlx_ptrs(t_data *data)
 		ft_exit(data, "Cub3D: Error: Image creation failed!\n", 1);
 	if (mlx_image_to_window(data->mlx->mlx, data->mlx->project, 0, 0) == -1)
 		ft_exit(data, "Cub3D: Error: Puting image to window failed!\n", 1);
-	mlx->S = mlx_load_png(data->SO);
-	mlx->N = mlx_load_png(data->NO);
-	mlx->W = mlx_load_png(data->WE);
-	mlx->E = mlx_load_png(data->EA);
-	if (!mlx->N | !mlx->W | !mlx->E | !mlx->S)
-		ft_exit(data, "Cub3D: Error: Loading images failed!", 1);
+	ft_load_images(data, mlx);
 }
 
 void	rander_2d_map(t_data *data, t_graph *mlx)

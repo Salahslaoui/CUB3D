@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:20:03 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/02 21:07:40 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/02 21:43:34 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	ft_exit(t_data *data, char *error, int exit_value)
 		free(data->view);
 	if (data->mlx->mlx)
 		mlx_terminate(data->mlx->mlx);
-	if (data->NO)
-		free(data->NO);
-	if (data->SO)
-		free(data->SO);
-	if (data->WE)
-		free(data->WE);
-	if (data->EA)
-		free(data->EA);
+	if (data->no)
+		free(data->no);
+	if (data->so)
+		free(data->so);
+	if (data->we)
+		free(data->we);
+	if (data->ea)
+		free(data->ea);
 	exit (exit_value);
 }

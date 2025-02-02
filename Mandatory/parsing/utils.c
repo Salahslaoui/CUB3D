@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:00:56 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/02 20:31:21 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/02 21:46:50 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	fill_space(char *str)
 
 void	utils_init(t_data *utils, char *av)
 {
-	utils->C_rgb = -1;
-	utils->F_rgb = -1;
+	utils->c_rgb = -1;
+	utils->f_rgb = -1;
 	utils->name = av;
 	utils->player->pl_x = 0;
 	utils->player->pl_y = 0;

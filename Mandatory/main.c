@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/02 21:10:10 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/02 21:40:53 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 static void ft_init_all(t_data *data)
 {
-	data->NO = NULL;
-	data->EA = NULL;
-	data->SO = NULL;
-	data->WE = NULL;
+	data->no = NULL;
+	data->ea = NULL;
+	data->so = NULL;
+	data->we = NULL;
 	data->map = NULL;
 	data->lst = NULL;
 	data->name = NULL;

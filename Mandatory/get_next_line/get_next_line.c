@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:35:32 by sslaoui           #+#    #+#             */
-/*   Updated: 2024/11/25 11:16:33 by sslaoui           ###   ########.fr       */
+/*   Updated: 2025/02/02 21:50:49 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ char	*ft_get_line(char **static_var)
 	line[i + 1] = '\0';
 	tmp = *static_var;
 	i = ft_strchr(*static_var, '\n') - *static_var;
-	*static_var = ft_substr(*static_var, i + 1, ft_strlen(*static_var) - i + 1);
+	*static_var = ft_substr(*static_var, \
+	i + 1, ft_strlen(*static_var) - i + 1);
 	return (free(tmp), line);
 }
 
