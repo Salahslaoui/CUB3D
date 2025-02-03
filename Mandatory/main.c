@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/02 21:40:53 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 08:48:41 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ static void ft_init_all(t_data *data)
 	data->view = NULL;
 }
 
+void leaks(){system("leaks cub3D");}
+
 int main(int ac, char **av)
 {
+	atexit(leaks);
 	t_data	utils;
 	t_player	pl;
 	t_graph	mlx;
@@ -39,7 +42,7 @@ int main(int ac, char **av)
 	utils.mlx = &mlx;
 	utils_init(&utils, av[1]);
 	if(ft_strncmp(parsing_map(&utils, &fd),"error",5) == 0)
-		return (1); // change returne with exit
+		return (free_map(utils.map), 1); // change returne with exit
 	player_detection(utils.map, &pl);
 	if ((int)pl.pl_x == 0 || (int)pl.pl_y == 0)
 		return (free_it(utils.lst, &utils), \

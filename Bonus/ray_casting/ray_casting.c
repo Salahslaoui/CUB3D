@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:26:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/02 16:26:17 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 09:10:21 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	ft_init_data(t_data *data)
 	player->rot_speed = 2 * (M_PI / 180);
 	player->pl_x = player->pl_x * SQUER + floor(SQUER / 2);
 	player->pl_y = player->pl_y * SQUER + floor(SQUER / 2);
-	player->d_x = cos(deg_to_rad(player->rot_angel)) * player->speed;
-	player->d_y = sin(deg_to_rad(player->rot_angel)) * player->speed;
 	data->view = NULL;
 	data->mlx->mlx = NULL;
 	data->mlx->project = NULL;

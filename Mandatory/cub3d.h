@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/02 21:46:14 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 09:13:07 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@
 # define RAY_NBR 1600
 # define BUFFER_SIZE 10
 
-typedef struct s_texture
-{
-	uint32_t		*colorbuffer;
-	uint32_t		*walltexture;
-}	t_texture;
 
 typedef struct s_facing
 {
@@ -78,13 +73,11 @@ typedef struct s_graph
 {
 	mlx_t			*mlx;
 	mlx_image_t		*project;
-	mlx_image_t		*image;
 	mlx_texture_t	*la;
 	mlx_texture_t	*north;
 	mlx_texture_t	*west;
 	mlx_texture_t	*south;
 	mlx_texture_t	*east;
-	mlx_image_t		*textute;
 }	t_graph;
 
 typedef struct s_player
@@ -115,7 +108,6 @@ typedef struct s_data
 	t_graph		*mlx;
 	t_list		*lst;
 	t_rays		*view;
-	t_texture	texture;
 	char		*name;
 	char		*no;
 	char		*ea;
@@ -123,9 +115,9 @@ typedef struct s_data
 	char		*we;
 	char		**map;
 	t_player	*player;
-	int			r;
 	int			count;
 	int			first;
+	int			r;
 	int			g;
 	int			b;
 	int			a;

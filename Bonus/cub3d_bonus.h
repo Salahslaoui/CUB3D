@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/02 21:31:35 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 09:10:30 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@
 # define MINI_H 180
 # define MINI_W 350
 # define MINI_S 20
-
-typedef struct s_texture
-{
-	uint32_t		*colorbuffer;
-	uint32_t		*walltexture;
-}	t_texture;
 
 typedef struct s_facing
 {
@@ -93,8 +87,6 @@ typedef struct s_player
 {
 	double			pl_x;
 	double			pl_y;
-	double			d_x;
-	double			d_y;
 	int			redius;
 	int			turn_dir;
 	int			walk_dir;
@@ -117,7 +109,6 @@ typedef struct s_data
 	t_graph		*mlx;
 	t_list		*lst;
 	t_rays		*view;
-	t_texture		texture;
 	char			*name;
 	char			*NO;
 	char			*EA;

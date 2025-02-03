@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:20:03 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/02 21:43:34 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 08:51:20 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ void	free_map(char **map)
 	int	i;
 
 	i = 0;
-	while (map[i])
+	while (map && map[i])
 	{
 		free(map[i]);
 		i++;
 	}
-	free(map);
+	if (map)
+		free(map);
 	map = NULL;
 }
 
