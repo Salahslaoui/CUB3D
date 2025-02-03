@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:31:59 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/02 21:19:18 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 12:26:19 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,8 @@ void	cast_all_rays(t_data *data, t_player *player)
 {
 	int		index;
 	float	ang;
-	//float	plus;
 
 	index = 0;
-	//plus = deg_to_rad(FOV_ANG) / RAY_NBR;
 	ang = player->rot_angel - (deg_to_rad(FOV_ANG) / 2);
 	while (index < RAY_NBR)
 	{

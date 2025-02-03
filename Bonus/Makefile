@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+         #
+#    By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/29 09:15:18 by ozahdi            #+#    #+#              #
-#    Updated: 2025/02/03 10:08:09 by sslaoui          ###   ########.fr        #
+#    Updated: 2025/02/03 12:51:35 by ozahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,15 +17,15 @@ SRC			=	main_bonus.c\
 				ray_casting/hooks.c ray_casting/mini_map_bonus.c ray_casting/ray_casting.c \
 				ray_casting/ray_casting_utils.c ray_casting/Castrays.c ray_casting/Castrays2.c ray_casting/3D_randring.c\
 				parsing/checker.c parsing/parsing.c parsing/rgb_check.c parsing/utils.c parsing/parsing2.c \
-				parsing/map_check.c utils/ft_exit.c\
+				parsing/map_check.c parsing/alloc_map.c  ray_casting/loading_images.c utils/ft_exit.c\
 
 OBJ			=	$(SRC:.c=.o)
 
 CC			=	cc
 
-FLAGS		=	-Wall -Wextra -Werror #-g3 -fsanitize=address
+FLAGS		=	-Wall -Wextra -Werror
 
-NAME			=	cub3D
+NAME			=	cub3D_bonus
 
 MLX_FLAGS		=	-I ../MLX42/include -L ../MLX42/build -L/Users/$(USER)/.brew/opt/glfw/lib -lMLX42 -lglfw
 

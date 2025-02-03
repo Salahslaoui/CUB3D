@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:59:50 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/02 17:18:27 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 11:58:44 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int	parse1(char *str, t_data *utils)
 {
 	if ((*str == '0' || *str == '1')
-		&& (!utils->NO || !utils->EA || !utils->WE || !utils->SO))
+		&& (!utils->no || !utils->ea || !utils->we || !utils->so))
 		return (1);
 	if ((*str == '0' || *str == '1')
-		&& (utils->C_rgb == -1 || utils->F_rgb == -1))
+		&& (utils->c_rgb == -1 || utils->f_rgb == -1))
 		return (1);
 	return (0);
 }
@@ -74,11 +74,11 @@ int	parse(char *str, int *i, t_data *utils, int in)
 		else if (res == 1)
 			return (1);
 	}
-	else if ((*str == '0' || *str == '1')
-		&& (!utils->NO || !utils->EA || !utils->WE || !utils->SO))
+	else if (space_detect(str)
+		&& (!utils->no || !utils->ea || !utils->we || !utils->so))
 		return (1);
-	else if ((*str == '0' || *str == '1')
-		&& (utils->C_rgb == -1 || utils->F_rgb == -1))
+	else if (space_detect(str)
+		&& (utils->c_rgb == -1 || utils->f_rgb == -1))
 		return (1);
 	else if (space_skip(str) == 1 || ft_strcmp(str, "\n") == 0)
 		return (0);

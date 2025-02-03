@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 08:45:34 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/01 14:40:53 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 11:58:44 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,21 @@ int	line_check(char *str, t_data *utils, int in, int fd)
 
 int	dir_fill(char *str, t_data *utils, int *i)
 {
+	while (str && *str == ' ')
+		str++;
 	if (ft_strncmp(str, "WE ", 3) == 0)
 	{
-		if (utils->WE)
+		if (utils->we)
 			return (1);
-		utils->WE = adjust_str(str, utils);
+		utils->we = adjust_str(str, utils);
 		(*i)++;
 		return (2);
 	}
 	else if (ft_strncmp(str, "C ", 2) == 0 || ft_strncmp(str, "F ", 2) == 0)
 	{
-		if (ft_strncmp(str, "C ", 2) == 0 && utils->C_rgb != -1)
+		if (ft_strncmp(str, "C ", 2) == 0 && utils->c_rgb != -1)
 			return (1);
-		if (ft_strncmp(str, "F ", 2) == 0 && utils->F_rgb != -1)
+		if (ft_strncmp(str, "F ", 2) == 0 && utils->f_rgb != -1)
 			return (1);
 		(*i)++;
 		if (rgb_parse(str, utils) == 1)
@@ -95,27 +97,27 @@ int	dir_fill(char *str, t_data *utils, int *i)
 
 int	direction_fill(char *str, t_data *utils, int *i)
 {
-	if (ft_strncmp(str, "NO ", 3) == 0)
+	if (str_space(&str) && ft_strncmp(str, "NO ", 3) == 0)
 	{
-		if (utils->NO)
+		if (utils->no)
 			return (1);
-		utils->NO = adjust_str(str, utils);
+		utils->no = adjust_str(str, utils);
 		(*i)++;
 		return (2);
 	}
 	else if (ft_strncmp(str, "SO ", 3) == 0)
 	{
-		if (utils->SO)
+		if (utils->so)
 			return (1);
-		utils->SO = adjust_str(str, utils);
+		utils->so = adjust_str(str, utils);
 		(*i)++;
 		return (2);
 	}
 	else if (ft_strncmp(str, "EA ", 3) == 0)
 	{
-		if (utils->EA)
+		if (utils->ea)
 			return (1);
-		utils->EA = adjust_str(str, utils);
+		utils->ea = adjust_str(str, utils);
 		(*i)++;
 		return (2);
 	}

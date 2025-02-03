@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/29 09:15:18 by ozahdi            #+#    #+#              #
-#    Updated: 2025/02/03 11:13:38 by sslaoui          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 SRC			=	main.c\
 				get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 				utils/ft_strcmp.c utils/ft_lstadd_back_bonus.c utils/ft_lstnew_bonus.c\
@@ -17,7 +5,7 @@ SRC			=	main.c\
 				ray_casting/hooks.c ray_casting/ray_casting.c ray_casting/ray_casting_utils.c \
 				ray_casting/Castrays.c ray_casting/Castrays2.c ray_casting/3D_randring.c\
 				parsing/checker.c parsing/parsing.c parsing/rgb_check.c parsing/utils.c parsing/parsing2.c \
-				parsing/map_check.c parsing/alloc-map.c utils/ft_exit.c\
+				parsing/map_check.c parsing/alloc_map.c utils/ft_exit.c ray_casting/loading_images.c\
 
 OBJ			=	$(SRC:.c=.o)
 

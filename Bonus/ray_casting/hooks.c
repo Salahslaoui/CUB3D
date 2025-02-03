@@ -6,39 +6,30 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:29:09 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/01 14:40:53 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 12:27:25 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-void update_player_vectors(t_player *player)
+void	handle_mouse_movement(t_data *data)
 {
-    // Update player direction vector
-//    player->d_x = cos(player->rot_angel);
-//    player->d_y = sin(player->rot_angel);
+	int			prev_mouse_x;
+	int			mouse_x;
+	int			mouse_y;
+	double		sensitivity;
+	int			delta_x;
 
-    // Update camera plane vector (perpendicular to the direction vector)
-    double fov = 0.66; // Field of view factor
-    player->pl_x *= fov;
-    player->pl_y *= fov;
-}
-
-void handle_mouse_movement(t_data *data)
-{
-	static int prev_mouse_x = WEIGHT / 2;
-	int mouse_x, mouse_y;
-	double sensitivity = 0.002;
-
+	prev_mouse_x = WEIGHT / 2;
+	sensitivity = 0.001;
 	mlx_get_mouse_pos(data->mlx->mlx, &mouse_x, &mouse_y);
 	mlx_set_cursor_mode(data->mlx->mlx, MLX_MOUSE_HIDDEN);
-	int delta_x = mouse_x - prev_mouse_x;
+	delta_x = mouse_x - prev_mouse_x;
 	data->player->rot_angel += delta_x * sensitivity;
 	data->player->rot_angel = normalaize_angle(data->player->rot_angel);
 	mlx_set_mouse_pos(data->mlx->mlx, WEIGHT / 2, HEIGHT / 2);
 	prev_mouse_x = WEIGHT / 2;
 }
-
 
 void	up_down_moves(t_data *data, t_player *player, int walk)
 {
@@ -84,29 +75,27 @@ void	right_lift_moves(t_data *data, t_player *player, int walk)
 void	ft_handek_actions(void *param)
 {
 	t_data		*data;
-	t_player	*player;
 
 	data = (t_data *)param;
-	player = data->player;
-	player->strafe_dir = 0;
+	data->player->strafe_dir = 0;
 	if (mlx_is_key_down(data->mlx->mlx, MLX_KEY_UP) || \
 		mlx_is_key_down(data->mlx->mlx, MLX_KEY_W))
-		up_down_moves(data, player, 1);
+		up_down_moves(data, data->player, 1);
 	if (mlx_is_key_down(data->mlx->mlx, MLX_KEY_DOWN) || \
 		mlx_is_key_down(data->mlx->mlx, MLX_KEY_S))
-		up_down_moves(data, player, -1);
+		up_down_moves(data, data->player, -1);
 	if (mlx_is_key_down(data->mlx->mlx, MLX_KEY_RIGHT))
-		lift_right_arrows(player, 1);
+		lift_right_arrows(data->player, 1);
 	if (mlx_is_key_down(data->mlx->mlx, MLX_KEY_LEFT))
-		lift_right_arrows(player, -1);
+		lift_right_arrows(data->player, -1);
 	if (mlx_is_key_down(data->mlx->mlx, MLX_KEY_D))
-		right_lift_moves(data, player, 1);
+		right_lift_moves(data, data->player, 1);
 	if (mlx_is_key_down(data->mlx->mlx, MLX_KEY_A))
-		right_lift_moves(data, player, -1);
+		right_lift_moves(data, data->player, -1);
 	if (mlx_is_key_down(data->mlx->mlx, MLX_KEY_ESCAPE))
 		ft_exit(data, NULL, 0);
-	cast_all_rays(data, player);
-	randring3d(data, player);
-	put_mini_map(data, data->mlx, data->player);
+	cast_all_rays(data, data->player);
+	randring3d(data, data->player);
+	put_mini_map(data, data->mlx, data->player, -1);
 	handle_mouse_movement(data);
 }

@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:02:47 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/01 14:40:53 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 11:50:13 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int	var_init(t_data *utils, char **ptr)
 {
 	if (check_rgb(ptr) == 1)
 		return (1);
-	utils->R = ft_atoi(ptr[0]);
-	utils->G = ft_atoi(ptr[1]);
-	utils->B = ft_atoi(ptr[2]);
-	if (utils->R > 255 || utils->G > 255 || utils->B > 255)
+	utils->r = ft_atoi(ptr[0]);
+	utils->g = ft_atoi(ptr[1]);
+	utils->b = ft_atoi(ptr[2]);
+	if (utils->r > 255 || utils->g > 255 || utils->b > 255)
 		return (1);
 	return (0);
 }
@@ -106,10 +106,10 @@ int	rgb_parse(char *str, t_data *utils)
 	if (var_init(utils, ptr) == 1 || check_verg(str) == 1)
 		return (free_splt(ptr), 1);
 	if (*(str - 2) == 'C')
-		utils->C_rgb = (utils->R << 24) | (utils->G << 16)
-			| (utils->B << 8) | (a);
+		utils->c_rgb = (utils->r << 24) | (utils->g << 16)
+			| (utils->b << 8) | (a);
 	if (*(str - 2) == 'F')
-		utils->F_rgb = (utils->R << 24) | (utils->G << 16)
-			| (utils->B << 8) | (a);
+		utils->f_rgb = (utils->r << 24) | (utils->g << 16)
+			| (utils->b << 8) | (a);
 	return (free_splt(ptr), 0);
 }

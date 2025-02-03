@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/03 11:09:11 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/02/03 12:07:37 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define FOV_ANG 60
 # define RAY_NBR 1600
 # define BUFFER_SIZE 10
-
 
 typedef struct s_facing
 {
@@ -189,5 +188,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strchr(const char *s, int c);
 char	*ft_get_line(char **static_var);
 int		read_function(int fd, char **static_var);
+void	ft_load_images(t_data *data, t_graph *mlx);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:56:57 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/02 17:30:14 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 11:58:44 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,6 @@ int	top_buttom(char **map, int y, int i)
 	return (0);
 }
 
-void ft_free_map_i(t_data *data, int end)
-{
-	int		i;
-
-	i = 0;
-	while (i < end)
-	{
-		free(data->map[i]);
-		data->map[i] = NULL;
-		i++;
-	}
-	free(data->map);
-	data->map = NULL;
-}
-
 int	filling_map(t_data *utils, int len, int j, t_list *lst)
 {
 	int	i;
@@ -62,15 +47,8 @@ int	filling_map(t_data *utils, int len, int j, t_list *lst)
 	utils->map = malloc(sizeof(char *) * (j + 1));
 	if (!utils->map)
 		return (ft_put_error("Error:\nMemory allocation failed!\n"), 1);
-	while (lst)
-	{
-		utils->map[i] = malloc(len + 1);
-		if (!utils->map[i])
-			return (ft_free_map_i(utils, i), 1);
-		ft_strcpy(lst->content, utils->map[i]);
-		lst = lst->next;
-		i++;
-	}
+	if (map_alloc(utils, lst, len, &i) == 1)
+		return (1);
 	utils->map[i] = NULL;
 	i = 0;
 	if (!utils->map[i] || check_map(utils, j) == 1)
@@ -94,10 +72,10 @@ void	free_it(t_list *lst, t_data *utils)
 		free(sav);
 	}
 	free(fr);
-	free(utils->NO);
-	free(utils->SO);
-	free(utils->WE);
-	free(utils->EA);
+	free(utils->no);
+	free(utils->so);
+	free(utils->we);
+	free(utils->ea);
 }
 
 void	*parsing_map(t_data *utils, int *fd)
@@ -111,10 +89,12 @@ void	*parsing_map(t_data *utils, int *fd)
 	i = 0;
 	utils->lst = NULL;
 	if (get_content(fd, utils) == 1)
-		return (ft_put_error("Error:\nThe map is Invalid\n"), free_it(utils->lst, utils), "error");
+		return (ft_put_error("Error:\nThe map is Invalid\n"), \
+		free_it(utils->lst, utils), "error");
 	len = lines_lenght(utils->lst, &j);
 	if (filling_map(utils, len, j, utils->lst) == 1)
-		return (ft_put_error("Error:\nThe map is Invalid\n"), free_it(utils->lst, utils), "error");
+		return (ft_put_error("Error:\nThe map is Invalid\n"), \
+		free_it(utils->lst, utils), "error");
 	fr = utils->lst;
 	while (fr)
 	{

@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:40:33 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/01 14:40:53 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 12:24:46 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-static	int	convets_string(const char *str, long long *s, int sign)
+static int	convets_string(const char *str, long long *s, int sign)
 {
 	long long	res;
 

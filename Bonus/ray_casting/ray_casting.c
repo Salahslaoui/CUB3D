@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:26:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/03 09:10:21 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 12:33:56 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,10 @@ void	ft_init_data(t_data *data)
 	data->view = NULL;
 	data->mlx->mlx = NULL;
 	data->mlx->project = NULL;
-	data->mlx->E = NULL;
-	data->mlx->W = NULL;
-	data->mlx->N = NULL;
-	data->mlx->S = NULL;
-}
-
-void ft_load_images(t_data *data, t_graph *mlx)
-{
-	mlx->S = mlx_load_png(data->SO);
-	if (!mlx->S)
-		ft_exit(data, "Error:\nLoading images failed!\n", 1);
-	mlx->N = mlx_load_png(data->NO);
-	if (!mlx->N)
-		ft_exit(data, "Error:\nLoading images failed!\n", 1);
-	mlx->W = mlx_load_png(data->WE);
-	if (!mlx->W)
-		ft_exit(data, "Error:\nLoading images failed!\n", 1);
-	mlx->E = mlx_load_png(data->EA);
-	if (!mlx->E)
-		ft_exit(data, "Error:\nLoading images failed!\n", 1);
+	data->mlx->east = NULL;
+	data->mlx->west = NULL;
+	data->mlx->north = NULL;
+	data->mlx->south = NULL;
 }
 
 void	init_mlx_ptrs(t_data *data)
@@ -74,7 +58,7 @@ void	init_mlx_ptrs(t_data *data)
 	mlx->project = mlx_new_image(mlx->mlx, WEIGHT, HEIGHT);
 	if (!mlx->project)
 		ft_exit(data, "Error:\nImage creation failed!\n", 1);
-	mlx->mini_map =  mlx_new_image(mlx->mlx, MINI_W, MINI_H);
+	mlx->mini_map = mlx_new_image(mlx->mlx, MINI_W, MINI_H);
 	if (!mlx->mini_map)
 		ft_exit(data, "Error: Image creation failed!\n", 1);
 	if (mlx_image_to_window(data->mlx->mlx, data->mlx->project, 0, 0) == -1)
@@ -89,7 +73,7 @@ void	rander_2d_map(t_data *data, t_graph *mlx)
 	init_mlx_ptrs(data);
 	cast_all_rays(data, data->player);
 	randring3d(data, data->player);
-	put_mini_map(data, mlx, data->player);
+	put_mini_map(data, mlx, data->player, -1);
 	mlx_loop_hook(data->mlx->mlx, ft_handek_actions, data);
 	mlx_loop(mlx->mlx);
 }

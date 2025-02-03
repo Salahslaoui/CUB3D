@@ -6,11 +6,11 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:35:32 by sslaoui           #+#    #+#             */
-/*   Updated: 2024/11/25 11:16:33 by sslaoui           ###   ########.fr       */
+/*   Updated: 2025/02/03 12:50:14 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../cub3d_bonus.h"
+#include "../cub3d_bonus.h"
 
 char	*ft_get_line(char **static_var)
 {

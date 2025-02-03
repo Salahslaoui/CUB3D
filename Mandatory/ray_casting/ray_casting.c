@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:26:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/03 09:10:15 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 12:07:18 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,6 @@ void	ft_init_data(t_data *data)
 	data->mlx->west = NULL;
 	data->mlx->north = NULL;
 	data->mlx->south = NULL;
-}
-
-void	ft_load_images(t_data *data, t_graph *mlx)
-{
-	mlx->south = mlx_load_png(data->so);
-	if (!mlx->south)
-		ft_exit(data, "Error:\nLoading images failed!\n", 1);
-	mlx->north = mlx_load_png(data->no);
-	if (!mlx->north)
-		ft_exit(data, "Error:\nLoading images failed!\n", 1);
-	mlx->west = mlx_load_png(data->we);
-	if (!mlx->west)
-		ft_exit(data, "Error:\nLoading images failed!\n", 1);
-	mlx->east = mlx_load_png(data->ea);
-	if (!mlx->east)
-		ft_exit(data, "Error:\nLoading images failed!\n", 1);
 }
 
 void	init_mlx_ptrs(t_data *data)
