@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+         #
+#    By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/29 09:15:18 by ozahdi            #+#    #+#              #
-#    Updated: 2025/02/02 16:31:13 by ozahdi           ###   ########.fr        #
+#    Updated: 2025/02/03 10:08:09 by sslaoui          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ FLAGS		=	-Wall -Wextra -Werror #-g3 -fsanitize=address
 
 NAME			=	cub3D
 
-MLX_FLAGS		=	-I./MLX42/include -L./MLX42/build -L/Users/$(USER)/.brew/opt/glfw/lib -lMLX42 -lglfw
+MLX_FLAGS		=	-I ../MLX42/include -L ../MLX42/build -L/Users/$(USER)/.brew/opt/glfw/lib -lMLX42 -lglfw
 
 all			:	$(NAME)
 

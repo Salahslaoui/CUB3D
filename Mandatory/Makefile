@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+         #
+#    By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/29 09:15:18 by ozahdi            #+#    #+#              #
-#    Updated: 2025/02/03 08:51:35 by ozahdi           ###   ########.fr        #
+#    Updated: 2025/02/03 11:13:38 by sslaoui          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC			=	main.c\
 				ray_casting/hooks.c ray_casting/ray_casting.c ray_casting/ray_casting_utils.c \
 				ray_casting/Castrays.c ray_casting/Castrays2.c ray_casting/3D_randring.c\
 				parsing/checker.c parsing/parsing.c parsing/rgb_check.c parsing/utils.c parsing/parsing2.c \
-				parsing/map_check.c utils/ft_exit.c\
+				parsing/map_check.c parsing/alloc-map.c utils/ft_exit.c\
 
 OBJ			=	$(SRC:.c=.o)
 
@@ -27,7 +27,7 @@ FLAGS		=	-Wall -Wextra -Werror #-g3 -fsanitize=address
 
 NAME			=	cub3D
 
-MLX_FLAGS		=	-I./MLX42/include -L./MLX42/build -L/Users/$(USER)/.brew/opt/glfw/lib -lMLX42 -lglfw
+MLX_FLAGS		=	-I ../MLX42/include -L ../MLX42/build -L/Users/$(USER)/.brew/opt/glfw/lib -lMLX42 -lglfw
 
 all			:	$(NAME)
 

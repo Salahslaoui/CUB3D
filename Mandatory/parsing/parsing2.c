@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 08:45:34 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/02 21:47:05 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 11:04:23 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	line_check(char *str, t_data *utils, int in, int fd)
 
 int	dir_fill(char *str, t_data *utils, int *i)
 {
+	while (str && *str == ' ')
+		str++;
 	if (ft_strncmp(str, "WE ", 3) == 0)
 	{
 		if (utils->we)
@@ -95,7 +97,7 @@ int	dir_fill(char *str, t_data *utils, int *i)
 
 int	direction_fill(char *str, t_data *utils, int *i)
 {
-	if (ft_strncmp(str, "NO ", 3) == 0)
+	if (str_space(&str) && ft_strncmp(str, "NO ", 3) == 0)
 	{
 		if (utils->no)
 			return (1);

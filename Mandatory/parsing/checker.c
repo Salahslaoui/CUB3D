@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:59:50 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/02 21:46:39 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 11:17:33 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ int	parse(char *str, int *i, t_data *utils, int in)
 		else if (res == 1)
 			return (1);
 	}
-	else if ((*str == '0' || *str == '1')
+	else if (space_detect(str)
 		&& (!utils->no || !utils->ea || !utils->we || !utils->so))
 		return (1);
-	else if ((*str == '0' || *str == '1')
+	else if (space_detect(str)
 		&& (utils->c_rgb == -1 || utils->f_rgb == -1))
 		return (1);
 	else if (space_skip(str) == 1 || ft_strcmp(str, "\n") == 0)

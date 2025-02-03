@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/03 09:13:07 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 11:09:11 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <limits.h>
-# include "MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 
 # define TEXT_HEIGH 64
 # define TEXT_WIDTH 64
@@ -158,6 +158,10 @@ int		get_content(int *fd, t_data *utils);
 int		parse(char *str, int *i, t_data *utils, int in);
 int		checker(char *str);
 int		parse1(char *str, t_data *utils);
+int		map_alloc(t_data *utils, t_list *lst, int len, int *i);
+void	ft_free_map_i(t_data *data, int end);
+int		str_space(char **str);
+int		space_detect(char *str);
 int		top_buttom(char **map, int y, int i);
 int		map_check(t_data *utils, int y, int i, int *j);
 int		dir_fill(char *str, t_data *utils, int *i);

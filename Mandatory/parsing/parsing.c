@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:56:57 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/02 21:50:00 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/03 11:03:36 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,6 @@ int	top_buttom(char **map, int y, int i)
 	return (0);
 }
 
-void	ft_free_map_i(t_data *data, int end)
-{
-	int		i;
-
-	i = 0;
-	while (i < end)
-	{
-		free(data->map[i]);
-		data->map[i] = NULL;
-		i++;
-	}
-	free(data->map);
-	data->map = NULL;
-}
-
 int	filling_map(t_data *utils, int len, int j, t_list *lst)
 {
 	int	i;
@@ -62,15 +47,8 @@ int	filling_map(t_data *utils, int len, int j, t_list *lst)
 	utils->map = malloc(sizeof(char *) * (j + 1));
 	if (!utils->map)
 		return (ft_put_error("Error:\nMemory allocation failed!\n"), 1);
-	while (lst)
-	{
-		utils->map[i] = malloc(len + 1);
-		if (!utils->map[i])
-			return (ft_free_map_i(utils, i), 1);
-		ft_strcpy(lst->content, utils->map[i]);
-		lst = lst->next;
-		i++;
-	}
+	if (map_alloc(utils, lst, len, &i) == 1)
+		return (1);
 	utils->map[i] = NULL;
 	i = 0;
 	if (!utils->map[i] || check_map(utils, j) == 1)
