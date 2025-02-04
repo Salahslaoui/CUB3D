@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:26:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/03 12:07:18 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/04 11:06:38 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_init_data(t_data *data)
 	player->walk_dir = 0;
 	rotation_angel(data, player);
 	player->redius = floor(SQUER / 7);
-	player->speed = 4;
+	player->speed = 60;
 	player->rot_speed = 2 * (M_PI / 180);
 	player->pl_x = player->pl_x * SQUER + floor(SQUER / 2);
 	player->pl_y = player->pl_y * SQUER + floor(SQUER / 2);
@@ -53,12 +53,12 @@ void	init_mlx_ptrs(t_data *data)
 	mlx = data->mlx;
 	mlx->mlx = mlx_init(WEIGHT, HEIGHT, "CUB3D", false);
 	if (!mlx->mlx)
-		ft_exit(data, "Cub3D: Error: Window creation failed!\n", 1);
+		ft_exit(data, "Error:\nWindow creation failed!\n", 1);
 	mlx->project = mlx_new_image(mlx->mlx, WEIGHT, HEIGHT);
 	if (!mlx->project)
-		ft_exit(data, "Cub3D: Error: Image creation failed!\n", 1);
+		ft_exit(data, "Error:\nImage creation failed!\n", 1);
 	if (mlx_image_to_window(data->mlx->mlx, data->mlx->project, 0, 0) == -1)
-		ft_exit(data, "Cub3D: Error: Puting image to window failed!\n", 1);
+		ft_exit(data, "Error:\nPuting image to window failed!\n", 1);
 	ft_load_images(data, mlx);
 }
 
@@ -76,6 +76,6 @@ void	ray_casting(t_data *data, t_graph *mlx)
 	ft_init_data(data);
 	data->view = malloc(sizeof(t_rays) * RAY_NBR);
 	if (!data->view)
-		ft_exit(data, "Cub3d: Error: Memory allocation failed!\n", 1);
+		ft_exit(data, "Error:\nMemory allocation failed!\n", 1);
 	rander_2d_map(data, mlx);
 }

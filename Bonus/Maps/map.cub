@@ -1,10 +1,10 @@
 C 212,235,248
 F 255,223,204
 
-NO Textures/wall12.png
-EA Textures/wall2.png
-WE Textures/wall1.png
-SO Textures/wall8.png
+NO Textures/wall_egy.png
+EA Textures/wall701.png
+WE Textures/wall702.png
+SO Textures/wall704.png
 
           1111111111111111111111111111111111
           10000000010000000000000000000000001111111111111111111111111

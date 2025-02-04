@@ -6,7 +6,7 @@
 #    By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/29 09:15:18 by ozahdi            #+#    #+#              #
-#    Updated: 2025/02/03 12:51:35 by ozahdi           ###   ########.fr        #
+#    Updated: 2025/02/04 08:52:30 by ozahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ FLAGS		=	-Wall -Wextra -Werror
 
 NAME			=	cub3D_bonus
 
-MLX_FLAGS		=	-I ../MLX42/include -L ../MLX42/build -L/Users/$(USER)/.brew/opt/glfw/lib -lMLX42 -lglfw
+MLX_FLAGS		=	-I /Users/$(USER)/Desktop/MLX42/include -L /Users/$(USER)/Desktop/MLX42/build \
+				-L/Users/$(USER)/.brew/opt/glfw/lib -lMLX42 -lglfw
 
 all			:	$(NAME)
 

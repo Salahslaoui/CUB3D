@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:53:59 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/03 11:50:13 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/04 11:05:30 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	map_alloc(t_data *utils, t_list *lst, int len, int *i)
 	{
 		utils->map[*i] = malloc(len + 1);
 		if (!utils->map[*i])
+		{
+			ft_put_error("Error:\nMemory allocation failed!\n");
 			return (ft_free_map_i(utils, *i), 1);
+		}
 		ft_strcpy(lst->content, utils->map[*i]);
 		lst = lst->next;
 		(*i)++;

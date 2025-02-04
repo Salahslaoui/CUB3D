@@ -15,7 +15,8 @@ FLAGS		=	-Wall -Wextra -Werror #-g3 -fsanitize=address
 
 NAME			=	cub3D
 
-MLX_FLAGS		=	-I ../MLX42/include -L ../MLX42/build -L/Users/$(USER)/.brew/opt/glfw/lib -lMLX42 -lglfw
+MLX_FLAGS		=	-I /Users/$(USER)/Desktop/MLX42/include -L /Users/$(USER)/Desktop/MLX42/build \
+				-L/Users/$(USER)/.brew/opt/glfw/lib -lMLX42 -lglfw
 
 all			:	$(NAME)
 
