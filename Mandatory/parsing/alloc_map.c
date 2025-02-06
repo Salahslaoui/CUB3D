@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:53:59 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/04 11:05:51 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/05 20:38:13 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,18 @@ void	ft_free_map_i(t_data *data, int end)
 	}
 	free(data->map);
 	data->map = NULL;
+}
+
+int	check_name(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str && *str != '.')
+		str++;
+	if (!str)
+		return (1);
+	if (ft_strcmp(str, ".cub"))
+		return (1);
+	return (0);
 }
