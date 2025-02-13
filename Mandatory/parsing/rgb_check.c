@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:02:47 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/05 20:11:16 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/02/13 20:25:59 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	check_verg(char *str)
 	{
 		if (str[i] == ',')
 			j++;
-		if (str[i] == ',' && space_skip(str + i + 1))
+		if (str[i] == ',' && space_skip_2(str + i + 1))
 			return (1);
 		i++;
 	}
@@ -107,7 +107,7 @@ int	rgb_parse(char *str, t_data *utils)
 	ptr = ft_split(str, ',');
 	if (!ptr || !ptr[0] || !ptr[1] || !ptr[2] || ptr[3])
 		return (free_splt(ptr), 1);
-	if (var_init(utils, ptr) == 1 || check_verg(str) == 1)
+	if (var_init(utils, ptr) == 1 || check_verg(str) == 1 || ptr_c(ptr) == 1)
 		return (free_splt(ptr), 1);
 	if (*(str - 2) == 'C')
 		utils->c_rgb = (utils->r << 24) | (utils->g << 16)

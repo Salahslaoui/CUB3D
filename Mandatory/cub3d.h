@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/13 00:27:43 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/02/13 20:26:19 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,5 +190,7 @@ double	normalaize_angle(double angle);
 int		wallcheckers(t_data *data, int x, int y);
 int		read_function(int fd, char **static_var);
 int		check_name(char *str);
+int		space_skip_2(char *str);
+int		ptr_c(char **ptr);
 
 #endif
