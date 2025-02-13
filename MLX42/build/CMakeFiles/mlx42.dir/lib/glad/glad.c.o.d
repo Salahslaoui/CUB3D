@@ -1,4 +1,4 @@
-CMakeFiles/mlx42.dir/lib/glad/glad.c.o: /tmp/re/MLX42/lib/glad/glad.c \
+CMakeFiles/mlx42.dir/lib/glad/glad.c.o: /tmp/test/MLX42/lib/glad/glad.c \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/stdio.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/_stdio.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/sys/cdefs.h \
@@ -76,7 +76,7 @@ CMakeFiles/mlx42.dir/lib/glad/glad.c.o: /tmp/re/MLX42/lib/glad/glad.c \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/strings.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/secure/_strings.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/secure/_string.h \
-  /tmp/re/MLX42/include/glad/glad.h \
-  /tmp/re/MLX42/include/KHR/khrplatform.h \
+  /tmp/test/MLX42/include/glad/glad.h \
+  /tmp/test/MLX42/include/KHR/khrplatform.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/dlfcn.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include/stdbool.h

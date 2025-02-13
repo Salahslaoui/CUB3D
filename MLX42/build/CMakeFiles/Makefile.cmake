@@ -117,11 +117,11 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Users/ozahdi/.brew/share/cmake/Modules/Platform/Linker/Apple-AppleClang-CXX.cmake"
   "/Users/ozahdi/.brew/share/cmake/Modules/Platform/Linker/Apple-AppleClang.cmake"
   "/Users/ozahdi/.brew/share/cmake/Modules/Platform/UnixPaths.cmake"
-  "/tmp/re/MLX42/CMakeLists.txt"
+  "/tmp/test/MLX42/CMakeLists.txt"
   "CMakeFiles/3.31.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.31.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.31.1/CMakeSystem.cmake"
-  "/tmp/re/MLX42/cmake/Findglfw3.cmake"
+  "/tmp/test/MLX42/cmake/Findglfw3.cmake"
   )
 
 # The corresponding makefile is:

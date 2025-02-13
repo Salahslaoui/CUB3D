@@ -8,7 +8,7 @@ SRC			=	main.c\
 				parsing/map_check.c parsing/alloc_map.c utils/ft_exit.c ray_casting/loading_images.c parsing/utils2.c\
 
 CC			=	cc
-FLAGS		=	-Wall -Wextra -Werror -fsanitize=address
+FLAGS		=	-Wall -Wextra -Werror #-fsanitize=address
 OBJ			=	$(SRC:.c=.o)
 NAME			=	cub3D
 MLX_FLAGS		=	-I ../MLX42/include -L ../MLX42/build \
