@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:02:47 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/03 11:50:13 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/06 22:16:47 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,17 @@ int	check_verg(char *str)
 {
 	int	i;
 	int	j;
+	int	k;
 
 	i = 0;
 	j = 0;
+	k = 0;
 	while (str[i])
 	{
 		if (str[i] == ',')
 			j++;
+		if (str[i] == ',' && space_skip(str + i + 1))
+			return (1);
 		i++;
 	}
 	if (j > 2)

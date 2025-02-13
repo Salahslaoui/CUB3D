@@ -6,23 +6,11 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 08:47:08 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/05 19:55:34 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/02/13 01:21:31 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-int	space_skip(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] == ' ')
-		i++;
-	if (str[i] == '\n' || !str[i])
-		return (1);
-	return (0);
-}
 
 int	sides_map(char **map, int y)
 {
@@ -39,10 +27,12 @@ int	sides_map(char **map, int y)
 	{
 		while (map[i][j] == ' ')
 			j++;
+		if (j > 0 && !map[i][j])
+			return (0);
 		while (map[i][len])
 			len++;
 		if ((map[i][j] != '1' && map[i][j] != '\n') || \
-			(map[i][len - 1] != '1' && map[i][len - 1] != '\n'))
+			(len >= 2 && map[i][len - 2] != '1' && map[i][len - 2] != '\n'))
 			return (1);
 		i++;
 		len = 0;
@@ -77,16 +67,33 @@ int	check_map2(char **map, int i, int j, int y)
 	return (0);
 }
 
+int	player_check(t_data *utils, int i, int j)
+{
+	if (utils->map[i][j + 1] != '1' && utils->map[i][j + 1] != '0')
+		return (1);
+	if (utils->map[i][j - 1] != '1' && utils->map[i][j - 1] != '0')
+		return (1);
+	if (utils->map[i + 1][j] != '1' && utils->map[i + 1][j] != '0')
+		return (1);
+	if (utils->map[i - 1][j] != '1' && utils->map[i - 1][j] != '0')
+		return (1);
+	return (0);
+}
+
 int	map_check(t_data *utils, int y, int i, int *j)
 {
 	char	m;
 
-	while (utils->map[i][*j] == ' ')
-		(*j)++;
+	if (!utils->map[i][*j])
+		return (0);
 	m = utils->map[i][*j];
 	utils->first = *j;
 	if (m == 'N' || m == 'E' || m == 'W' || m == 'S')
+	{
+		if (player_check(utils, i, *j) == 1)
+			return (1);
 		utils->count++;
+	}
 	if (utils->count > 1)
 		return (1);
 	if (m == '0')
@@ -95,7 +102,7 @@ int	map_check(t_data *utils, int y, int i, int *j)
 			return (1);
 	}
 	else if (m != '1' && m != '\n' && m != 'N' && m != 'S' && \
-		m != 'W' && m != 'E' && m != ' ')
+		m != 'W' && m != 'E')
 		return (1);
 	(*j)++;
 	return (0);
@@ -118,6 +125,8 @@ int	check_map(t_data *utils, int y)
 	{
 		while (utils->map[i][j])
 		{
+			while (utils->map[i][j] == ' ')
+				j++;
 			if (map_check(utils, y, i, &j) == 1)
 				return (1);
 		}

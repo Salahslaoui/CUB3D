@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:26:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/04 11:06:38 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/04 11:56:26 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_init_data(t_data *data)
 	player->walk_dir = 0;
 	rotation_angel(data, player);
 	player->redius = floor(SQUER / 7);
-	player->speed = 60;
+	player->speed = 45;
 	player->rot_speed = 2 * (M_PI / 180);
 	player->pl_x = player->pl_x * SQUER + floor(SQUER / 2);
 	player->pl_y = player->pl_y * SQUER + floor(SQUER / 2);

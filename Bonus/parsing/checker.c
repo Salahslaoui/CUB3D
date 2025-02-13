@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:59:50 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/03 11:58:44 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/08 21:01:01 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,11 @@ int	get_content(int *fd, t_data *utils)
 	int		j;
 	int		in;
 
+	str = NULL;
 	j = 0;
 	in = 0;
+	while (utils->name[j] != '.')
+		j++;
 	*fd = open(utils->name, O_RDONLY, 0777);
 	if (*fd == -1)
 	{
@@ -106,10 +109,11 @@ int	get_content(int *fd, t_data *utils)
 	str = get_next_line(*fd);
 	if (!str)
 	{
+		close(*fd);
 		ft_put_error("Error:\nReading from file failed!\n");
 		exit (1);
 	}
 	if (line_check(str, utils, in, *fd) == 1)
-		return (1);
-	return (0);
+		return (close(*fd), 1);
+	return (close(*fd), 0);
 }

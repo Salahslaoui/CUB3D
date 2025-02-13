@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:59:50 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/05 20:37:54 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:50:27 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,8 @@ int	get_content(int *fd, t_data *utils)
 	str = NULL;
 	j = 0;
 	in = 0;
-	while (utils->name[j] != '.')
-		j++;
-	*fd = open(utils->name, O_RDONLY, 0777);
-	if (*fd == -1 || check_name(utils->name))
+	*fd = open(utils->name, O_RDONLY, 0755);
+	if (*fd == -1)
 	{
 		ft_put_error("Error:\nOpening file failed!\n");
 		exit (1);

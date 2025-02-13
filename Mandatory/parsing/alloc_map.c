@@ -6,7 +6,7 @@
 /*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:53:59 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/05 20:38:13 by sslaoui          ###   ########.fr       */
+/*   Updated: 2025/02/12 17:06:46 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	map_alloc(t_data *utils, t_list *lst, int len, int *i)
 {
 	while (lst)
 	{
+		if (ft_strcmp(lst->content, "\n") == 0)
+			return (ft_free_map_i(utils, *i), 1);
 		utils->map[*i] = malloc(len + 1);
 		if (!utils->map[*i])
 		{
@@ -69,14 +71,12 @@ void	ft_free_map_i(t_data *data, int end)
 
 int	check_name(char *str)
 {
-	int	i;
+	int		len;
 
-	i = 0;
-	while (str && *str != '.')
-		str++;
 	if (!str)
 		return (1);
-	if (ft_strcmp(str, ".cub"))
+	len = ft_strlen(str);
+	if (ft_strcmp(str + len - 4, ".cub"))
 		return (1);
 	return (0);
 }

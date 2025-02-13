@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/03 12:16:56 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/08 21:01:20 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (ft_put_error("Error:\nInvalid number of arguments\n"), 1);
+	if (check_name(av[1]))
+		return (ft_put_error("Error:\nInvalid file \".cub\"\n"), 1);
 	ft_init_all(&utils);
 	utils.player = &pl;
 	utils.mlx = &mlx;

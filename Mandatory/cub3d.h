@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sslaoui <sslaoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/04 11:09:29 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/13 00:27:43 by sslaoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <limits.h>
-# include "/Users/ozahdi/Desktop/MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 
 # define TEXT_HEIGH 700
 # define TEXT_WIDTH 700
@@ -109,13 +109,13 @@ typedef struct s_data
 	t_rays		*view;
 	int			count;
 	int			first;
-	int			r;
-	int			g;
-	int			b;
-	int			a;
+	long		r;
+	long		g;
+	long		b;
+	long		a;
 	int			i;
-	int			f_rgb;
-	int			c_rgb;
+	long		f_rgb;
+	long		c_rgb;
 	int			height;
 	int			weight;
 	char		*name;
@@ -189,5 +189,6 @@ double	deg_to_rad(double degree);
 double	normalaize_angle(double angle);
 int		wallcheckers(t_data *data, int x, int y);
 int		read_function(int fd, char **static_var);
+int		check_name(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:24:29 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/03 12:23:19 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/04 12:20:05 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void	ft_fill_project(t_data *data, t_graph *mlx)
 		while (j < WEIGHT)
 		{
 			if (i < HEIGHT / 2)
-				mlx_put_pixel(mlx->project, j, i, 0x2f3e46FF);
+				mlx_put_pixel(mlx->project, j, i, data->c_rgb);
 			else
-				mlx_put_pixel(data->mlx->project, j, i, 0xcad2c5FF);
+				mlx_put_pixel(data->mlx->project, j, i, data->f_rgb);
 			j++;
 		}
 		i++;

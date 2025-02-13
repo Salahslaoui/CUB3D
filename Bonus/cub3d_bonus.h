@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/04 11:10:31 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/06 22:01:51 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <math.h>
 # include <limits.h>
 # include <fcntl.h>
-# include "/Users/ozahdi/Desktop/MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 
 # define TEXT_HEIGH 700
 # define TEXT_WIDTH 700
@@ -191,5 +191,6 @@ int		read_function(int fd, char **static_var);
 int		space_detect(char *str);
 int		map_alloc(t_data *utils, t_list *lst, int len, int *i);
 int		str_space(char **str);
+int		check_name(char *str);
 
 #endif

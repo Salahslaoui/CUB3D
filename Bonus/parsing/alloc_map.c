@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:53:59 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/04 11:05:30 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/08 20:47:15 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,16 @@ void	ft_free_map_i(t_data *data, int end)
 	}
 	free(data->map);
 	data->map = NULL;
+}
+
+int	check_name(char *str)
+{
+	int		len;
+
+	if (!str)
+		return (1);
+	len = ft_strlen(str);
+	if (ft_strcmp(str + len - 4, ".cub"))
+		return (1);
+	return (0);
 }
