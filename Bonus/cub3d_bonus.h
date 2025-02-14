@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:11 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/06 22:01:51 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/14 09:45:46 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# include <limits.h>
 # include <fcntl.h>
+# include <limits.h>
 # include "../MLX42/include/MLX42/MLX42.h"
 
 # define TEXT_HEIGH 700
@@ -44,31 +44,31 @@ typedef struct s_facing
 
 typedef struct s_rays
 {
-	bool				horz_wallhit;
-	bool				vert_wallhit;
-	bool				washitvert;
-	long				up;
-	long				down;
-	t_facing			*facing;
-	float				ray_ang;
-	float				distance;
-	float				xstep;
-	float				ystep;
-	float				xintercept;
-	float				yintercept;
-	float				horz_wallhitx;
-	float				horz_wallhity;
-	float				vert_wallhitx;
-	float				vert_wallhity;
-	float				destinationx;
-	float				destinationy;
-	int					wall_hight;
-	double				nextvtouch_x;
-	double				nextvtouch_y;
-	double				nexthtouch_x;
-	double				nexthtouch_y;
-	int					offx;
-	int					offy;
+	float			ray_ang;
+	float			distance;
+	float			xstep;
+	float			ystep;
+	float			xintercept;
+	float			yintercept;
+	float			horz_wallhitx;
+	float			horz_wallhity;
+	float			vert_wallhitx;
+	float			vert_wallhity;
+	float			destinationx;
+	float			destinationy;
+	int				wall_hight;
+	double			nextvtouch_x;
+	double			nextvtouch_y;
+	double			nexthtouch_x;
+	double			nexthtouch_y;
+	int				offx;
+	int				offy;
+	bool			horz_wallhit;
+	bool			vert_wallhit;
+	bool			washitvert;
+	t_facing		*facing;
+	long			up;
+	long			down;
 }	t_rays;
 
 typedef struct s_graph
@@ -87,6 +87,8 @@ typedef struct s_player
 {
 	double			pl_x;
 	double			pl_y;
+	double			d_x;
+	double			d_y;
 	int				redius;
 	int				turn_dir;
 	int				walk_dir;
@@ -109,15 +111,15 @@ typedef struct s_data
 	t_graph		*mlx;
 	t_list		*lst;
 	t_rays		*view;
-	int			r;
 	int			count;
 	int			first;
-	int			g;
-	int			b;
-	int			a;
+	long		r;
+	long		g;
+	long		b;
+	long		a;
 	int			i;
-	int			f_rgb;
-	int			c_rgb;
+	long		f_rgb;
+	long		c_rgb;
 	int			height;
 	int			weight;
 	char		*name;
@@ -139,10 +141,12 @@ char	*ft_strtrim(char *s1, char *set);
 void	init_dt(char **ptr, char *str, int *i, int *j);
 void	free_it(t_list *lst, t_data *utils);
 void	free_map(char **map);
-void	free_map(char **map);
 void	ft_put_error(char *error);
 void	*parsing_map(t_data *utils, int *fd);
+void	ft_free_map_i(t_data *data, int end);
 void	ray_casting(t_data *data, t_graph *mlx);
+void	ft_put_player(t_data *data, mlx_image_t *image);
+void	ft_put_map(t_data *data);
 void	ft_handek_actions(void *param);
 void	cast_all_rays(t_data *data, t_player *player);
 void	randring3d(t_data *data, t_player *player);
@@ -157,7 +161,6 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strchr(const char *s, int c);
 char	*ft_get_line(char **static_var);
-void	ft_free_map_i(t_data *data, int end);
 void	ft_load_images(t_data *data, t_graph *mlx);
 int		ft_atoi(const char *str);
 int		ft_strcmp(char *s1, char *s2);
@@ -177,20 +180,22 @@ int		get_content(int *fd, t_data *utils);
 int		parse(char *str, int *i, t_data *utils, int in);
 int		checker(char *str);
 int		parse1(char *str, t_data *utils);
+int		map_alloc(t_data *utils, t_list *lst, int len, int *i);
+int		str_space(char **str);
+int		space_detect(char *str);
 int		top_buttom(char **map, int y, int i);
 int		map_check(t_data *utils, int y, int i, int *j);
 int		dir_fill(char *str, t_data *utils, int *i);
 int		direction_fill(char *str, t_data *utils, int *i);
 int		line_check(char *str, t_data *utils, int in, int fd);
+size_t	ft_strlen(const char *s);
 int		ft_check_wall(t_data *data, double x, double y);
 double	deg_to_rad(double degree);
 double	normalaize_angle(double angle);
 int		wallcheckers(t_data *data, int x, int y);
-size_t	ft_strlen(const char *s);
 int		read_function(int fd, char **static_var);
-int		space_detect(char *str);
-int		map_alloc(t_data *utils, t_list *lst, int len, int *i);
-int		str_space(char **str);
 int		check_name(char *str);
+int		space_skip_2(char *str);
+int		ptr_c(char **ptr);
 
 #endif

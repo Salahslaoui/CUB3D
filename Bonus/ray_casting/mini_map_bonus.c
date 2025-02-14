@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:31:37 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/03 12:32:29 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/14 09:53:13 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-void	put_player(t_graph *mlx, double player_y, double player_x)
+static void	put_player(t_graph *mlx, double player_y, double player_x)
 {
 	int			x;
 	int			y;

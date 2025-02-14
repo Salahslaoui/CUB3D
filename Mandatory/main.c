@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:39:17 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/13 09:16:58 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/14 09:08:25 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,8 @@ static void	ft_init_all(t_data *data)
 	data->view = NULL;
 }
 
-void leaks(){
-	system("leaks cub3D");
-}
-
 int	main(int ac, char **av)
 {
-	atexit(leaks);
 	t_data		utils;
 	t_graph		mlx;
 	int			fd;
