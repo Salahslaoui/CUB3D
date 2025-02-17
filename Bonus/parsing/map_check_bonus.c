@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 08:47:08 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/17 13:45:04 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 14:19:25 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,19 @@ int	check_map2_bonus(char **map, int i, int j, int y)
 	k = 0;
 	if (i == y)
 		return (0);
-	if (map[i - 1][j] != '1' && map[i - 1][j] != 'N' && \
+	if (map[i - 1][j] != '2' && map[i - 1][j] != '1' && map[i - 1][j] != 'N' && \
 	map[i - 1][j] != 'E' && map[i - 1][j] != 'W' && \
 		map[i - 1][j] != 'S' && map[i - 1][j] != '0')
 		return (1);
-	if (j > 0 && map[i][j - 1] != '1' && map[i][j - 1] != 'N' && \
+	if (j > 0 && map[i][j - 1] != '2' && map[i][j - 1] != '1' && map[i][j - 1] != 'N' && \
 		map[i][j - 1] != 'S' && \
 		map[i][j - 1] != 'W' && map[i][j - 1] != 'E' && map[i][j - 1] != '0')
 		return (1);
-	if (map[i + 1][j] != '1' && map[i + 1][j] != 'N' && \
+	if (map[i + 1][j] != '2' && map[i + 1][j] != '1' && map[i + 1][j] != 'N' && \
 		map[i + 1][j] != 'W' && map[i + 1][j] != 'E' && \
 		map[i + 1][j] != 'S' && map[i + 1][j] != '0')
 		return (1);
-	if (map[i][j + 1] != '1' && map[i][j + 1] != 'N' && \
+	if (map[i][j + 1] != '2' && map[i][j + 1] != '1' && map[i][j + 1] != 'N' && \
 		map[i][j + 1] != 'E' && map[i][j + 1] != 'W' && \
 		map[i][j + 1] != 'S' && map[i][j + 1] != '0')
 		return (1);
@@ -69,13 +69,13 @@ int	check_map2_bonus(char **map, int i, int j, int y)
 
 int	player_check_bonus(t_data *utils, int i, int j)
 {
-	if (utils->map[i][j + 1] != '1' && utils->map[i][j + 1] != '0')
+	if (utils->map[i][j + 1] != '1' && utils->map[i][j + 1] != '0' && utils->map[i][j + 1] != '2')
 		return (1);
-	if (utils->map[i][j - 1] != '1' && utils->map[i][j - 1] != '0')
+	if (utils->map[i][j - 1] != '1' && utils->map[i][j - 1] != '0' && utils->map[i][j - 1] != '2')
 		return (1);
-	if (utils->map[i + 1][j] != '1' && utils->map[i + 1][j] != '0')
+	if (utils->map[i + 1][j] != '1' && utils->map[i + 1][j] != '0' && utils->map[i + 1][j] != '2')
 		return (1);
-	if (utils->map[i - 1][j] != '1' && utils->map[i - 1][j] != '0')
+	if (utils->map[i - 1][j] != '1' && utils->map[i - 1][j] != '0' && utils->map[i - 1][j] != '2')
 		return (1);
 	return (0);
 }
@@ -96,10 +96,14 @@ int	map_check_bonus(t_data *utils, int y, int i, int *j)
 	}
 	if (utils->count > 1)
 		return (1);
-	if (m == '0')
+	if (m == '0' || m == '2')
 	{
 		if (check_map2_bonus(utils->map, i, *j, y) == 1)
+		{
+			printf("******************************[%c]\n", m);
+			
 			return (1);
+		}
 	}
 	else if (m != '1' && m != '\n' && m != 'N' && m != 'S' && \
 		m != 'W' && m != 'E')

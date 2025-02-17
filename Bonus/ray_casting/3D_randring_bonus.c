@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:24:29 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/17 13:39:29 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 14:30:00 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,16 @@ void	ft_init_la_ptr_bonus(t_rays *ray, t_data *data)
 	}
 }
 
+static void put_door(t_data *data, int x, int wallheight)
+{
+	int i = data->view[x].up - 1;
+	(void)wallheight;
+	while (++i < data->view[x].down)
+	{
+		mlx_put_pixel(data->mlx->project, x, i, 0x854836FF);
+	}
+}
+
 void	randring3d_bonus(t_data *data, t_player *player)
 {
 	double		wallheight;
@@ -112,6 +122,9 @@ void	randring3d_bonus(t_data *data, t_player *player)
 		if (data->view[i].down > HEIGHT)
 			data->view[i].down = HEIGHT;
 		ft_init_la_ptr_bonus(&data->view[i], data);
-		putline_bonus(data, i, wallheight);
+		if (data->map[(int)(data->view[i].destinationy / SQUER)][(int)(data->view[i].destinationx / SQUER)] != '2')
+			putline_bonus(data, i, wallheight);
+		else
+			put_door(data, i, wallheight);
 	}
 }

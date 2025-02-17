@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 08:45:34 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/17 13:44:28 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 14:09:33 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	line_check_bonus(char *str, t_data *utils, int in, int fd)
 			ptr++;
 		if (*ptr == '\t' || parse_bonus(str, &j, utils, in) == 1)
 			return (free(str), 1);
-		if (*ptr == '1' || *ptr == '0' || ft_strcmp_bonus(str, "\n") == 0
+		if (*ptr == '2' || *ptr == '1' || *ptr == '0' || ft_strcmp_bonus(str, "\n") == 0
 			|| space_skip_bonus(ptr) == 1)
 		{
 			node = ft_lstnew_bonus(str);

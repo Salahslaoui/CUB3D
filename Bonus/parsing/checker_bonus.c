@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:59:50 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/17 13:45:55 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 14:10:46 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	checker_bonus(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] != '0' && str[i] != '1'
+		if (str[i] != '0' && str[i] != '1' && str[i] != '2'
 			&& str[i] != 'N' && str[i] != 'S' && str[i] != 'W'
 			&& str[i] != 'E' && str[i] != ' ' && str[i] != '\n')
 			return (0);

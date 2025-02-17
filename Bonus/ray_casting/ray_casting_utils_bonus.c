@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:33:37 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/17 13:31:07 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 14:31:47 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	ft_check_wall_bonus(t_data *data, double x, double y)
 		return (1);
 	q = data->player->pl_x / SQUER;
 	w = data->player->pl_y / SQUER;
-	if ((data->map[i][q] && data->map[i][q] == '1') || \
-	(data->map[w][j] && data->map[w][j] == '1'))
+	if ((data->map[i][q] && (data->map[i][q] == '1' || data->map[i][q] == '2')) || \
+	(data->map[w][j] && (data->map[w][j] == '1' || data->map[w][j] == '2')))
 		return (1);
-	if (data->map && data->map[i] && data->map[i][j] && data->map[i][j] == '1')
+	if (data->map && data->map[i] && data->map[i][j] && (data->map[i][j] == '1' || data->map[i][j] == '2'))
 		return (1);
 	return (0);
 }
@@ -55,7 +55,7 @@ int	wallcheckers_bonus(t_data *data, int x, int y)
 
 	i = floor(y / SQUER);
 	j = floor(x / SQUER);
-	if (!data->map[i][j] || data->map[i][j] == '1')
+	if (!data->map[i][j] || data->map[i][j] == '1' || data->map[i][j] == '2')
 		return (1);
 	return (0);
 }

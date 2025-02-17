@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:29:09 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/17 13:49:36 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 14:36:23 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,25 @@ static void	right_lift_moves(t_data *data, t_player *player, int walk)
 	}
 }
 
+void open_doors(t_data *data, int open)
+{
+	int i = 0;
+	int j = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (open && data->map[i][j] == '2')
+				data->map[i][j] = '3';
+			else if (!open && data->map[i][j] == '3')
+				data->map[i][j] = '2';
+			j++;
+		}
+		i++;
+	}
+}
+
 void	ft_handek_actions_bonus(void *param)
 {
 	t_data		*data;
@@ -94,6 +113,10 @@ void	ft_handek_actions_bonus(void *param)
 		right_lift_moves(data, data->player, -1);
 	if (mlx_is_key_down(data->mlx->mlx, MLX_KEY_ESCAPE))
 		ft_exit_bonus(data, NULL, 0);
+	if (mlx_is_key_down(data->mlx->mlx, MLX_KEY_O))
+		open_doors(data, 1);
+	if (mlx_is_key_down(data->mlx->mlx, MLX_KEY_C))
+		open_doors(data, 0);
 	cast_all_rays_bonus(data, data->player);
 	randring3d_bonus(data, data->player);
 	put_mini_map_bonus(data, data->mlx, data->player, -1);
