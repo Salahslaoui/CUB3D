@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:40:33 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/14 09:19:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:27:03 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-static	int	convets_string(const char *str, long long *s, int sign)
+static	int	convets_string_bonus(const char *str, long long *s, int sign)
 {
 	long long	res;
 
@@ -33,7 +33,7 @@ static	int	convets_string(const char *str, long long *s, int sign)
 	return (*s * sign);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi_bonus(const char *str)
 {
 	long long	n;
 	int			sign;
@@ -49,5 +49,5 @@ int	ft_atoi(const char *str)
 		sign = -1;
 		str++;
 	}
-	return (convets_string(str, &n, sign));
+	return (convets_string_bonus(str, &n, sign));
 }

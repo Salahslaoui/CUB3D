@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:24:29 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/14 09:19:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:39:29 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-unsigned int	rgb_convert(unsigned int cl)
+unsigned int	rgb_convert_bonus(unsigned int cl)
 {
 	unsigned int		r;
 	unsigned int		g;
@@ -26,7 +26,7 @@ unsigned int	rgb_convert(unsigned int cl)
 	return ((b << 24) | (g << 16) | (r << 8) | (a));
 }
 
-void	putline(t_data *data, int x, double w_height)
+void	putline_bonus(t_data *data, int x, double w_height)
 {
 	long			i;
 	int				dist;
@@ -43,13 +43,13 @@ void	putline(t_data *data, int x, double w_height)
 		dist = i + (w_height / 2) - (HEIGHT / 2);
 		data->view[x].offy = dist * ((float)TEXT_WIDTH / w_height);
 		tex_pxl = (unsigned int *)data->mlx->la->pixels;
-		text = rgb_convert(tex_pxl[(SQUER * data->view[x].offy) + \
+		text = rgb_convert_bonus(tex_pxl[(SQUER * data->view[x].offy) + \
 		data->view[x].offx]);
 		mlx_put_pixel(data->mlx->project, x, i, text);
 	}
 }
 
-void	ft_fill_project(t_data *data, t_graph *mlx)
+void	ft_fill_project_bonus(t_data *data, t_graph *mlx)
 {
 	int		i;
 	int		j;
@@ -71,7 +71,7 @@ void	ft_fill_project(t_data *data, t_graph *mlx)
 	}
 }
 
-void	ft_init_la_ptr(t_rays *ray, t_data *data)
+void	ft_init_la_ptr_bonus(t_rays *ray, t_data *data)
 {
 	if (ray->washitvert == true)
 	{
@@ -89,18 +89,18 @@ void	ft_init_la_ptr(t_rays *ray, t_data *data)
 	}
 }
 
-void	randring3d(t_data *data, t_player *player)
+void	randring3d_bonus(t_data *data, t_player *player)
 {
 	double		wallheight;
 	double		distanceprojection;
 	int			i;
 
 	(void)player;
-	ft_fill_project(data, data->mlx);
+	ft_fill_project_bonus(data, data->mlx);
 	i = -1;
 	while (++i < RAY_NBR)
 	{
-		distanceprojection = (WEIGHT / 2) / tan(deg_to_rad(FOV_ANG) / 2);
+		distanceprojection = (WEIGHT / 2) / tan(deg_to_rad_bonus(FOV_ANG) / 2);
 		wallheight = (SQUER / (data->view[i].distance * \
 		cos(data->view[i].ray_ang - player->rot_angel))) * \
 		distanceprojection;
@@ -111,7 +111,7 @@ void	randring3d(t_data *data, t_player *player)
 		(wallheight / 2)) + wallheight;
 		if (data->view[i].down > HEIGHT)
 			data->view[i].down = HEIGHT;
-		ft_init_la_ptr(&data->view[i], data);
-		putline(data, i, wallheight);
+		ft_init_la_ptr_bonus(&data->view[i], data);
+		putline_bonus(data, i, wallheight);
 	}
 }

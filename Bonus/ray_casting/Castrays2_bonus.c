@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:37:20 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/14 09:19:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:37:16 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-void	rayfacing(t_rays *ray, t_facing *facing)
+void	rayfacing_bonus(t_rays *ray, t_facing *facing)
 {
 	facing->facing_down = 0;
 	facing->facing_left = 0;
@@ -51,7 +51,7 @@ t_facing *facing)
 	ray->nexthtouch_y = ray->yintercept;
 }
 
-void	horizontal_intersection(t_data *data, t_rays *ray, t_facing *facing)
+void	horizontal_intersection_bonus(t_data *data, t_rays *ray, t_facing *facing)
 {
 	int			var;
 
@@ -63,7 +63,7 @@ void	horizontal_intersection(t_data *data, t_rays *ray, t_facing *facing)
 	ray->nexthtouch_x <= ((data->weight - 1) * SQUER) && \
 	ray->nexthtouch_y <= ((data->height - 1) * SQUER))
 	{
-		if (wallcheckers(data, ray->nexthtouch_x, ray->nexthtouch_y - var))
+		if (wallcheckers_bonus(data, ray->nexthtouch_x, ray->nexthtouch_y - var))
 		{
 			ray->horz_wallhit = true;
 			ray->horz_wallhitx = ray->nexthtouch_x;
@@ -101,7 +101,7 @@ t_rays *ray, t_facing *facing)
 	ray->nextvtouch_y = ray->yintercept;
 }
 
-void	vertical_intersection(t_data *data, t_rays *ray, t_facing *facing)
+void	vertical_intersection_bonus(t_data *data, t_rays *ray, t_facing *facing)
 {
 	int		var;
 
@@ -113,7 +113,7 @@ void	vertical_intersection(t_data *data, t_rays *ray, t_facing *facing)
 	ray->nextvtouch_x <= ((data->weight - 1) * SQUER) && \
 	ray->nextvtouch_y <= ((data->height - 1) * SQUER))
 	{
-		if (wallcheckers(data, ray->nextvtouch_x - var, ray->nextvtouch_y))
+		if (wallcheckers_bonus(data, ray->nextvtouch_x - var, ray->nextvtouch_y))
 		{
 			ray->vert_wallhit = true;
 			ray->vert_wallhitx = ray->nextvtouch_x;

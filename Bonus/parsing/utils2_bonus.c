@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:21:14 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/14 09:19:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:39:49 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-int	space_skip(char *str)
+int	space_skip_bonus(char *str)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ int	space_skip(char *str)
 	return (0);
 }
 
-int	space_skip_2(char *str)
+int	space_skip_2_bonus(char *str)
 {
 	int	i;
 
@@ -36,7 +36,7 @@ int	space_skip_2(char *str)
 	return (0);
 }
 
-int	ptr_c(char **ptr)
+int	ptr_c_bonus(char **ptr)
 {
 	int	i;
 	int	j;

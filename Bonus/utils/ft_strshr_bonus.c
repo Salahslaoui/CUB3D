@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 22:30:30 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/14 09:19:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:28:36 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-int	ft_strshr(char *s, char c)
+int	ft_strshr_bonus(char *s, char c)
 {
 	int			i;
 

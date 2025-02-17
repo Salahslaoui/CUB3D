@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:26:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/14 09:50:38 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:50:48 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	rotation_angel(t_data *data, t_player *player)
 		player->rot_angel = M_PI / 2;
 }
 
-void	ft_init_data(t_data *data)
+static void	ft_init_data(t_data *data)
 {
 	t_player		*player;
 
@@ -46,43 +46,43 @@ void	ft_init_data(t_data *data)
 	data->mlx->south = NULL;
 }
 
-void	init_mlx_ptrs(t_data *data)
+static void	init_mlx_ptrs(t_data *data)
 {
 	t_graph		*mlx;
 
 	mlx = data->mlx;
 	mlx->mlx = mlx_init(WEIGHT, HEIGHT, "CUB3D", false);
 	if (!mlx->mlx)
-		ft_exit(data, "Error:\nWindow creation failed!\n", 1);
+		ft_exit_bonus(data, "Error:\nWindow creation failed!\n", 1);
 	mlx_set_mouse_pos(data->mlx->mlx, WEIGHT / 2, HEIGHT / 2);
 	mlx->project = mlx_new_image(mlx->mlx, WEIGHT, HEIGHT);
 	if (!mlx->project)
-		ft_exit(data, "Error:\nImage creation failed!\n", 1);
+		ft_exit_bonus(data, "Error:\nImage creation failed!\n", 1);
 	mlx->mini_map = mlx_new_image(mlx->mlx, MINI_W, MINI_H);
 	if (!mlx->mini_map)
-		ft_exit(data, "Error: Image creation failed!\n", 1);
+		ft_exit_bonus(data, "Error: Image creation failed!\n", 1);
 	if (mlx_image_to_window(data->mlx->mlx, data->mlx->project, 0, 0) == -1)
-		ft_exit(data, "Error:\nPuting image to window failed!\n", 1);
+		ft_exit_bonus(data, "Error:\nPuting image to window failed!\n", 1);
 	if (mlx_image_to_window(data->mlx->mlx, data->mlx->mini_map, 0, 0) == -1)
-		ft_exit(data, "Error:\nPuting image to window failed!\n", 1);
-	ft_load_images(data, mlx);
+		ft_exit_bonus(data, "Error:\nPuting image to window failed!\n", 1);
+	ft_load_images_bonus(data, mlx);
 }
 
-void	rander_2d_map(t_data *data, t_graph *mlx)
+static void	rander_2d_map_bonus(t_data *data, t_graph *mlx)
 {
 	init_mlx_ptrs(data);
-	cast_all_rays(data, data->player);
-	randring3d(data, data->player);
-	put_mini_map(data, mlx, data->player, -1);
-	mlx_loop_hook(data->mlx->mlx, ft_handek_actions, data);
+	cast_all_rays_bonus(data, data->player);
+	randring3d_bonus(data, data->player);
+	put_mini_map_bonus(data, mlx, data->player, -1);
+	mlx_loop_hook(data->mlx->mlx, ft_handek_actions_bonus, data);
 	mlx_loop(mlx->mlx);
 }
 
-void	ray_casting(t_data *data, t_graph *mlx)
+void	ray_casting_bonus(t_data *data, t_graph *mlx)
 {
 	ft_init_data(data);
 	data->view = malloc(sizeof(t_rays) * RAY_NBR);
 	if (!data->view)
-		ft_exit(data, "Error:\nMemory allocation failed!\n", 1);
-	rander_2d_map(data, mlx);
+		ft_exit_bonus(data, "Error:\nMemory allocation failed!\n", 1);
+	rander_2d_map_bonus(data, mlx);
 }

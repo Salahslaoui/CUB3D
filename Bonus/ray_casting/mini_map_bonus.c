@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:31:37 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/14 09:53:13 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:35:05 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-static void	put_player(t_graph *mlx, double player_y, double player_x)
+static void	put_player_bonus(t_graph *mlx, double player_y, double player_x)
 {
 	int			x;
 	int			y;
@@ -37,7 +37,7 @@ static void	put_player(t_graph *mlx, double player_y, double player_x)
 	}
 }
 
-void	put_mini_map(t_data *data, t_graph *mlx, t_player *player, int i)
+void	put_mini_map_bonus(t_data *data, t_graph *mlx, t_player *player, int i)
 {
 	double		player_x;
 	double		player_y;
@@ -62,5 +62,5 @@ void	put_mini_map(t_data *data, t_graph *mlx, t_player *player, int i)
 				mlx_put_pixel(mlx->mini_map, j, i, 0xF2EFE7FF);
 		}
 	}
-	put_player(mlx, player_y, player_x);
+	put_player_bonus(mlx, player_y, player_x);
 }

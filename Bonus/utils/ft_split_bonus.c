@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:20:04 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/14 09:19:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:28:23 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static char	**ft_allocate(char **res, char const *s, unsigned int j, char c)
 	return (res);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_bonus(char const *s, char c)
 {
 	const char		*str;
 	unsigned int	j;

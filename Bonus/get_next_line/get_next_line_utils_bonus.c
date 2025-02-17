@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 12:56:26 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/14 09:19:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:48:07 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen_bonus(const char *s)
 {
 	size_t	i;
 
@@ -24,17 +24,17 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup_bonus(const char *s1)
 {
 	char			*str;
 	unsigned int	i;
 
-	i = ft_strlen(s1);
+	i = ft_strlen_bonus(s1);
 	str = (char *)malloc(i + 1);
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (s1[i] && i < ft_strlen(s1))
+	while (s1[i] && i < ft_strlen_bonus(s1))
 	{
 		str[i] = s1[i];
 		i++;
@@ -43,18 +43,18 @@ char	*ft_strdup(const char *s1)
 	return (str);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_bonus(char *s1, char *s2)
 {
 	char			*str;
 	unsigned int	i;
 	unsigned int	j;
 
 	if (!s1)
-		return (ft_strdup(s2));
+		return (ft_strdup_bonus(s2));
 	if (!s2)
-		return (ft_strdup(s1));
+		return (ft_strdup_bonus(s1));
 	i = 0;
-	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	str = (char *)malloc(ft_strlen_bonus(s1) + ft_strlen_bonus(s2) + 1);
 	if (!str)
 		return (NULL);
 	while (s1[i])
@@ -69,7 +69,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr_bonus(char const *s, unsigned int start, size_t len)
 {
 	char				*str;
 	unsigned long int	i;
@@ -77,15 +77,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	i = 0;
-	if (start >= ft_strlen(s) || !len)
+	if (start >= ft_strlen_bonus(s) || !len)
 	{
-		str = ft_strdup("");
+		str = ft_strdup_bonus("");
 		if (!str)
 			return (NULL);
 		return (str);
 	}
-	if (ft_strlen(s) - start < len)
-		len = ft_strlen(s) - start;
+	if (ft_strlen_bonus(s) - start < len)
+		len = ft_strlen_bonus(s) - start;
 	str = malloc(len + 1);
 	if (!str)
 		return (NULL);
@@ -98,7 +98,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr_bonus(const char *s, int c)
 {
 	int		i;
 

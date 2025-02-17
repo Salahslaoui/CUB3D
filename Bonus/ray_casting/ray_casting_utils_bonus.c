@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:33:37 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/14 09:19:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:31:07 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-int	ft_check_wall(t_data *data, double x, double y)
+int	ft_check_wall_bonus(t_data *data, double x, double y)
 {
 	int		i;
 	int		j;
@@ -34,12 +34,12 @@ int	ft_check_wall(t_data *data, double x, double y)
 	return (0);
 }
 
-double	deg_to_rad(double degree)
+double	deg_to_rad_bonus(double degree)
 {
 	return (degree * (M_PI / 180));
 }
 
-double	normalaize_angle(double angle)
+double	normalaize_angle_bonus(double angle)
 {
 	if (angle < 0)
 		angle += (2 * M_PI);
@@ -48,7 +48,7 @@ double	normalaize_angle(double angle)
 	return (angle);
 }
 
-int	wallcheckers(t_data *data, int x, int y)
+int	wallcheckers_bonus(t_data *data, int x, int y)
 {
 	int			i;
 	int			j;

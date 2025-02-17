@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:00:56 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/14 09:19:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:40:02 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-void	fill_space(char *str)
+void	fill_space_bonus(char *str)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ void	fill_space(char *str)
 	str[i] = ' ';
 }
 
-void	utils_init(t_data *utils, char *av)
+void	utils_init_bonus(t_data *utils, char *av)
 {
 	utils->c_rgb = -1;
 	utils->f_rgb = -1;
@@ -37,7 +37,7 @@ void	utils_init(t_data *utils, char *av)
 	utils->i = 0;
 }
 
-void	player_detection(char **map, t_player *pl)
+void	player_detection_bonus(char **map, t_player *pl)
 {
 	int	i;
 	int	j;
@@ -62,7 +62,7 @@ void	player_detection(char **map, t_player *pl)
 	}
 }
 
-void	ft_strcpy(const char *src, char *dst)
+void	ft_strcpy_bonus(const char *src, char *dst)
 {
 	int	i;
 
@@ -75,7 +75,7 @@ void	ft_strcpy(const char *src, char *dst)
 	dst[i] = '\0';
 }
 
-int	lines_lenght(t_list *lst, int *l_len)
+int	lines_lenght_bonus(t_list *lst, int *l_len)
 {
 	int	i;
 	int	j;

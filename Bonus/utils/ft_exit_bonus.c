@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:20:03 by ozahdi            #+#    #+#             */
-/*   Updated: 2025/02/14 09:19:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:51:20 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-void	free_map(char **map)
+void	free_map_bonus(char **map)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void	free_map(char **map)
 	map = NULL;
 }
 
-void	ft_put_error(char *error)
+void	ft_put_error_bonus(char *error)
 {
 	int		i;
 
@@ -38,11 +38,11 @@ void	ft_put_error(char *error)
 		write(2, &error[i], 1);
 }
 
-void	ft_exit(t_data *data, char *error, int exit_value)
+void	ft_exit_bonus(t_data *data, char *error, int exit_value)
 {
-	ft_put_error(error);
+	ft_put_error_bonus(error);
 	if (data->map)
-		free_map(data->map);
+		free_map_bonus(data->map);
 	if (data->view)
 		free(data->view);
 	if (data->mlx->mlx)

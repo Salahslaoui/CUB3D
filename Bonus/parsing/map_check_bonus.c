@@ -6,13 +6,13 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 08:47:08 by sslaoui           #+#    #+#             */
-/*   Updated: 2025/02/14 09:19:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:45:04 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-int	sides_map(char **map, int y)
+int	sides_map_bonus(char **map, int y)
 {
 	int	i;
 	int	j;
@@ -21,7 +21,7 @@ int	sides_map(char **map, int y)
 	i = 0;
 	j = 0;
 	len = 0;
-	if (top_buttom(map, y, i) == 1)
+	if (top_buttom_bonus(map, y, i) == 1)
 		return (1);
 	while (map[i])
 	{
@@ -41,7 +41,7 @@ int	sides_map(char **map, int y)
 	return (0);
 }
 
-int	check_map2(char **map, int i, int j, int y)
+int	check_map2_bonus(char **map, int i, int j, int y)
 {
 	int	k;
 
@@ -67,7 +67,7 @@ int	check_map2(char **map, int i, int j, int y)
 	return (0);
 }
 
-int	player_check(t_data *utils, int i, int j)
+int	player_check_bonus(t_data *utils, int i, int j)
 {
 	if (utils->map[i][j + 1] != '1' && utils->map[i][j + 1] != '0')
 		return (1);
@@ -80,7 +80,7 @@ int	player_check(t_data *utils, int i, int j)
 	return (0);
 }
 
-int	map_check(t_data *utils, int y, int i, int *j)
+int	map_check_bonus(t_data *utils, int y, int i, int *j)
 {
 	char	m;
 
@@ -90,7 +90,7 @@ int	map_check(t_data *utils, int y, int i, int *j)
 	utils->first = *j;
 	if (m == 'N' || m == 'E' || m == 'W' || m == 'S')
 	{
-		if (player_check(utils, i, *j) == 1)
+		if (player_check_bonus(utils, i, *j) == 1)
 			return (1);
 		utils->count++;
 	}
@@ -98,7 +98,7 @@ int	map_check(t_data *utils, int y, int i, int *j)
 		return (1);
 	if (m == '0')
 	{
-		if (check_map2(utils->map, i, *j, y) == 1)
+		if (check_map2_bonus(utils->map, i, *j, y) == 1)
 			return (1);
 	}
 	else if (m != '1' && m != '\n' && m != 'N' && m != 'S' && \
@@ -108,7 +108,7 @@ int	map_check(t_data *utils, int y, int i, int *j)
 	return (0);
 }
 
-int	check_map(t_data *utils, int y)
+int	check_map_bonus(t_data *utils, int y)
 {
 	int	count;
 	int	first;
@@ -119,7 +119,7 @@ int	check_map(t_data *utils, int y)
 	first = 0;
 	i = 1;
 	j = 0;
-	if (sides_map(utils->map, y) == 1)
+	if (sides_map_bonus(utils->map, y) == 1)
 		return (1);
 	while (utils->map[i - 1] && utils->map[i])
 	{
@@ -127,7 +127,7 @@ int	check_map(t_data *utils, int y)
 		{
 			while (utils->map[i][j] == ' ')
 				j++;
-			if (map_check(utils, y, i, &j) == 1)
+			if (map_check_bonus(utils, y, i, &j) == 1)
 				return (1);
 		}
 		j = 0;
